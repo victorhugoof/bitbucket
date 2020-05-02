@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta charset="UTF-8"/>
+	<h:outputStylesheet library="css" name="style.css" />
+	
+	<title>PROJETO TRIER</title>
+	
+	
+</h:head>
+
+<h:body >
+	
+	
+
+	<div class="geral">
+		<header>
+			<h1>CONTROLE DE ATIVIDADES</h1>
+		</header>
+		
+		<div class="content">
+			<p:growl id="msg" showDetail="true" closable="true"><p:autoUpdate /></p:growl>
+			
+			<p:panel  id="panel">
+					<!-- ABA CADASTRAR/EDITAR ATIVIDADE -->
+						<h:form id="cadastro">
+							<p:panel id="infos" header="Cadastro">
+								<p:panelGrid columns="3" layout="grid" style="border:none">
+											
+									<p:panelGrid columns="1" layout="grid" style="border:none">
+										<p:row><p:outputLabel for="cad_nome" value="Título" /></p:row>
+										<p:row><p:inputText disabled="#{controller.atividade.status}" style="width:100%" id="cad_nome" value="#{controller.atividade.nome}" required="true" requiredMessage="É necessária informar um título"/></p:row>
+									</p:panelGrid>
+									
+									
+									<p:panelGrid columns="1" layout="grid" style="border:none">
+										<p:row><p:outputLabel for="cad_tipo" value="Tipo" /></p:row>
+										<p:row>
+											<p:selectOneMenu disabled="#{controller.atividade.status}" style="width:100%" id="cad_tipo" required="true" requiredMessage="É necessária selecionar um tipo" value="#{controller.atividade.tipo}" converter="tipoConverter">
+												<f:selectItems value="#{controller.lista_tipos}" />
+											</p:selectOneMenu>
+										</p:row>
+									</p:panelGrid>
+								</p:panelGrid>
+								
+								
+								<p:panelGrid columns="1" layout="grid" style="padding:8px; border:none">
+									<p:row><p:outputLabel for="cad_desc" value="Descrição" /></p:row>
+									<p:row>
+										<p:textEditor readonly="#{controller.atividade.status}" widgetVar="edit_desc" id="cad_desc" binding="#{controller.textDesc}" value="#{controller.atividade.descricao}" height="100" style="margin-bottom:10px" required="true" requiredMessage="É necessário colocar uma descrição!">
+											<f:facet name="toolbar">
+												<span class="ql-formats">
+													<button class="ql-bold" />
+							                		<button class="ql-italic" />
+							               			<button class="ql-underline" />
+							                		<button class="ql-strike" />
+												</span>
+											</f:facet>
+										</p:textEditor>
+									</p:row>
+								</p:panelGrid>
+							
+							
+							
+										<!-- FUNÇÕES ATIVIDADE -->
+								<p:toolbar>
+	       							<f:facet name="left">										
+										<p:commandButton value="Salvar" actionListener="#{controller.adicionar}" update="cadastro consulta" icon="ui-icon-disk"/>
+										<p:commandButton value="Cancelar" update="cadastro consulta infos" process="@this" actionListener="#{controller.cancelar}" icon="ui-icon-cancel"><p:resetInput target="infos" /></p:commandButton>
+									</f:facet>
+									
+									<f:facet name="right">
+										<p:selectBooleanButton value="#{controller.atividade.status}" style="height: 34px;" onLabel="Concluída" offLabel="Em aberto" onIcon="fa fa-lock" offIcon="fa fa-unlock-alt" />
+									</f:facet>	
+								</p:toolbar>
+							</p:panel>
+						</h:form>
+						
+					
+					
+					
+						<p:separator style="margin: 50px"/>
+					
+					
+						<!-- 							CONSULTA DE ATIVIDADES 							-->
+						<h:form id="consulta" style="margin-top: 50px">
+							
+						
+						
+							<p:dataTable id="tabelaConsulta" widgetVar="tabela" reflow="true" rows="6" paginator="true" var="at" value="#{controller.lista_atv}" emptyMessage="Nenhuma atividade cadastrada">
+								<f:facet name="header">
+									<p:outputPanel><h2>Atividade adicionadas</h2></p:outputPanel>
+									<p:outputPanel>
+										<p:toolbar style="padding: 7px 0px 0px 7px">
+											<f:facet name="right">
+													<p:selectOneButton onchange="PF('tabela').filter()" unselectable="true" id="globalFilter">
+                    									<f:converter converterId="javax.faces.Boolean" />
+											            <f:selectItem itemLabel="Em aberto" itemValue="false" />
+											            <f:selectItem itemLabel="Concluídas" itemValue="true" />
+											        </p:selectOneButton>
+											</f:facet>
+										</p:toolbar>
+									</p:outputPanel>
+								</f:facet>
+								
+								<!-- COLUNAS -->
+								<p:column headerText="Título" width="20%" ><h:outputText value="#{at.nome}" /></p:column>
+								<p:column headerText="Descrição" width="46%" ><h:outputText value="#{at.descricao}" escape="false" /></p:column>
+								<p:column headerText="Tipo" width="14%" ><h:outputText value="#{at.tipo}" /></p:column>
+								<p:column headerText="Status" width="8%" filterBy="#{at.status}" filterMatchMode="exact" filterStyle="display:none"><h:outputText value="#{at.status ? 'Concluída': 'Em aberto'}" /></p:column>
+								
+								
+								<!-- COLUNA FUNÇÕES -->
+								<p:column width="12%">
+									<p:commandButton id="btnEditar" onclick="$('html, body').animate({scrollTop:0}, 'slow');" icon="ui-icon-pencil" style="padding:0" actionListener="#{controller.seleciona}" update="cadastro consulta"><f:attribute name="atv_edita" value="#{at}" /></p:commandButton>
+									<p:tooltip id="toolTipEditar" for="btnEditar" value="Editar atendimento" position="top"/>
+									
+									<p:commandButton id="btnConcluir" icon="fa fa-lock" style="padding:0" actionListener="#{controller.concluir}" update="cadastro consulta" rendered="#{!(at.status)}">
+										<p:confirm header="Confirmação" message="Deseja concluir este atendimento?" icon="ui-icon alert" />
+										<f:attribute name="atv_conclui" value="#{at}" />
+									</p:commandButton>
+									<p:tooltip id="toolTipConcluir" for="btnConcluir" value="Concluir atendimento" position="top"/>
+									
+									<p:commandButton id="btnReabrir" icon="fa fa-unlock-alt" style="padding:0" actionListener="#{controller.reabrir}" update="cadastro consulta" rendered="#{at.status}">
+										<p:confirm header="Confirmação" message="Deseja reabrir este atendimento?" icon="ui-icon alert" />
+										<f:attribute name="atv_reabre" value="#{at}" />
+									</p:commandButton>
+									<p:tooltip id="toolTipReabrir" for="btnReabrir" value="Reabrir atendimento" position="top"/>
+									
+									<p:commandButton id="btnExcluir" icon="ui-icon-trash" style="padding:0" actionListener="#{controller.excluir}" update="cadastro consulta">
+										<p:confirm header="Confirmação" message="Excluir atendimento?" icon="ui-icon alert" />
+										<f:attribute name="atv_exclui" value="#{at}" />
+									</p:commandButton>
+									<p:tooltip id="toolTipExcluir" for="btnExcluir" value="Excluir atendimento" position="top"/>
+								</p:column>
+							</p:dataTable>
+							
+							
+							<!-- DIALOGO DE CONFIRMAÇÃO -->
+							<p:confirmDialog global="true">
+								<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        			<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							</p:confirmDialog>
+						</h:form>
+			</p:panel>
+		</div>
+		
+		<footer>
+			<h5>Desenvolvido por Victor Hugo M. Fernandes, 2018.</h5>
+		</footer>
+	</div>
+</h:body>
+</html>

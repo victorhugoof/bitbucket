@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+*  {
+    margin:0;
+    padding:0;
+}
+
+html, body {height:100%;}
+
+body {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal;
+}
+
+.ui-column-title {
+	font-weight: bold !important;
+}
+
+.geral {
+    min-height:100%;
+    position:relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ui-messages-info , .ui-growl-info, .ui-growl-info > div.ui-growl-item{
+	background-color:#71c184 !important;
+	border-color:#95d0a3 !important;
+}
+
+
+header {
+	margin-bottom: 20px;
+	background-color: #3c8dbc;
+	color: #fff;
+	box-shadow: 0px 2px 2px #ccc;
+	text-align: center;
+	padding: 6px 0;
+}
+
+footer{
+	margin-top: 20px;
+	background-color: #3c8dbc;
+	color: #fff;
+	box-shadow: 0px -2px 2px #ccc;
+	text-align: center;
+	padding: 4px 0;
+    bottom:0;
+    width:100%;
+}
+
+
+.content {
+	padding: 0px 8px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	width: 90%;
+}
+            
