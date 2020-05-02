@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="900" minWidth="900" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
+	<children>
+		<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pickOnBounds="false" rotateGraphic="true" snapToPixel="false" tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+				<Tab text="Principal">
+					<content>
+						<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<top>
+								<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="200.0" BorderPane.alignment="CENTER">
+									<children>
+										<Button mnemonicParsing="false" onAction="#abreImagem1" prefHeight="38.0" prefWidth="138.0" text="Abrir Imagem 1">
+											<HBox.margin>
+												<Insets left="60.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#abreImagem2" prefHeight="31.0" prefWidth="146.0" text="Abrir Imagem 2">
+											<HBox.margin>
+												<Insets left="80.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#salvar" prefHeight="31.0" prefWidth="172.0" text="Salvar Resultado">
+											<HBox.margin>
+												<Insets left="90.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+									</children>
+								</HBox>
+							</top>
+							<center>
+								<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="655.0" minWidth="943.0" BorderPane.alignment="CENTER">
+									<children>
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="667.0" minWidth="241.0">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageView" fitHeight="190.0" fitWidth="227.0" onMouseMoved="#rasterIMG" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="655.0" minWidth="232.0">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" onMouseMoved="#rasterIMG" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+											<HBox.margin>
+												<Insets left="10.0" />
+											</HBox.margin>
+										</ScrollPane>
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="655.0" minWidth="237.0">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageView3" fitHeight="150.0" fitWidth="200.0" onMouseMoved="#rasterIMG" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+											<HBox.margin>
+												<Insets left="10.0" />
+											</HBox.margin>
+										</ScrollPane>
+										<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="655.0" minWidth="258.0">
+											<children>
+                                    <ButtonBar buttonMinWidth="20.0" prefHeight="40.0" prefWidth="200.0">
+                                      <buttons>
+                                          <Button mnemonicParsing="false" onAction="#subtracao" text="Subtração" />
+                                          <Button mnemonicParsing="false" onAction="#escalaDeCinzaMedia" text="Cinza" />
+                                        <Button mnemonicParsing="false" onAction="#negativo" text="Negativo" />
+                                      </buttons>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                    </ButtonBar>
+                                    <ButtonBar buttonMinWidth="20.0" prefHeight="40.0" prefWidth="200.0">
+                                      <buttons>
+                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reduzirRuidoX" text="X" />
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reduzirRuidoCruz" text="Cruz" />
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reduzirRuido3x3" text="3x3" />
+                                      </buttons>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                    </ButtonBar>
+												<Slider fx:id="slider" accessibleText="Limiarização" majorTickUnit="50.0" max="255.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+													<VBox.margin>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</VBox.margin>
+												</Slider>
+												<Slider fx:id="slider1" accessibleText="Adição" blockIncrement="1.0" majorTickUnit="10.0" max="100.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
+													<VBox.margin>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</VBox.margin>
+												</Slider>
+												<Pane fx:id="pnlCor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="76.0" minWidth="254.0">
+													<VBox.margin>
+														<Insets top="100.0" />
+													</VBox.margin>
+												</Pane>
+												<Label text="Red:">
+													<VBox.margin>
+														<Insets left="20.0" top="20.0" />
+													</VBox.margin>
+												</Label>
+												<Label fx:id="lblR">
+													<VBox.margin>
+														<Insets left="50.0" />
+													</VBox.margin>
+												</Label>
+												<Label text="Green:">
+													<VBox.margin>
+														<Insets left="20.0" />
+													</VBox.margin>
+												</Label>
+												<Label fx:id="lblG">
+													<VBox.margin>
+														<Insets left="50.0" />
+													</VBox.margin>
+												</Label>
+												<Label text="Blue:">
+													<VBox.margin>
+														<Insets left="20.0" />
+													</VBox.margin>
+												</Label>
+												<Label fx:id="lblB">
+													<VBox.margin>
+														<Insets left="50.0" />
+													</VBox.margin>
+												</Label>
+											</children>
+										</VBox>
+									</children>
+								</HBox>
+							</center>
+						</BorderPane>
+					</content>
+				</Tab>
+				<Tab text="Desafio 1">
+					<content>
+						<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<top>
+								<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="200.0" BorderPane.alignment="CENTER">
+									<children>
+										<Button mnemonicParsing="false" onAction="#abreImagemDesafio1" prefHeight="38.0" prefWidth="138.0" text="Abrir Imagem">
+											<HBox.margin>
+												<Insets bottom="30.0" left="30.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#aplicarFiltroDesafio1" prefHeight="38.0" prefWidth="138.0" text="Aplicar filtro">
+											<HBox.margin>
+												<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#removerFiltroDesafio1" prefHeight="38.0" prefWidth="138.0" text="Remover filtro">
+											<HBox.margin>
+												<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#salvarImagemDesafio1" prefHeight="38.0" prefWidth="138.0" text="Salvar">
+											<HBox.margin>
+												<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+									</children>
+								</HBox>
+							</top>
+							<center>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+											<children>
+												<ImageView fx:id="imageViewDesafio1" fitHeight="639.0" fitWidth="898.0" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+							</center>
+						</BorderPane>
+					</content>
+				</Tab>
+				<Tab text="Desafio 2">
+					<content>
+						<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<top>
+								<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="200.0" BorderPane.alignment="CENTER">
+									<children>
+										<Button mnemonicParsing="false" onAction="#abreImagemDesafio2" prefHeight="38.0" prefWidth="138.0" text="Abrir Imagem">
+											<HBox.margin>
+												<Insets bottom="30.0" left="30.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#aplicarFiltroDesafio2" prefHeight="38.0" prefWidth="138.0" text="Aplicar filtro">
+											<HBox.margin>
+												<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#removerFiltroDesafio2" prefHeight="38.0" prefWidth="138.0" text="Remover filtro">
+											<HBox.margin>
+												<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+										<Button mnemonicParsing="false" onAction="#salvarImagemDesafio2" prefHeight="38.0" prefWidth="138.0" text="Salvar">
+											<HBox.margin>
+												<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+											</HBox.margin>
+										</Button>
+									</children>
+								</HBox>
+							</top>
+							<center>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+											<children>
+												<ImageView fx:id="imageViewDesafio2" fitHeight="639.0" fitWidth="898.0" onMousePressed="#pressedImagemDesafio2" onMouseReleased="#releasedImagemDesafio2" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+							</center>
+						</BorderPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
+</AnchorPane>

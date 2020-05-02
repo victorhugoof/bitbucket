@@ -1,0 +1,18 @@
+### Troços
+* administrar dados
+* periodo do ano com mais vendas
+* produtividade de equipe de vendedores
+* tendencias por estação / periodo
+* encargos gerais
+* balanço mensal/anual
+* periodos com mais faltas de funcionarios por categoria (falta, atestado, ferias)
+* periodos com aumento de clientes
+* clientes mais assíduos
+
+### Objetos
+- vendas
+- funcionarios
+- produtos
+- despesas
+- receitas
+- clientes                                
