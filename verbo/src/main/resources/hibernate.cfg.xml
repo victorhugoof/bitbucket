@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Configurações de Conexão com o Banco de Dados -->
+		<!-- SQL dialect -->
+		<!-- MYSQL -->
+		<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/verbo?createDatabaseIfNotExist=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;useUnicode=true&amp;autoReconnect=true&amp;allowPublicKeyRetrieval=true</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+
+
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+		<property name="hibernate.connection.CharSet">utf8</property>
+		<property name="hibernate.connection.characterEncoding">utf8</property>
+		<property name="hibernate.connection.useUnicode">true</property>
+
+		<!-- Gerenciamento do Contexto das Sessões -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Cache de Segundo Nível -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+
+		<!-- Mostra as SQLs Geradas -->
+		<property name="show_sql">false</property>
+		<property name="format_sql">false</property>
+		<property name="use_sql_comments">false</property>
+
+
+		<!-- Cria as tabelas do banco de dados -->
+		<property name="hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.import_files">sql/grupoacesso, sql/master.sql</property>
+		<property name="hibernate.hbm2ddl.import_files_sql_extractor">util.HibernateImport</property>
+
+
+		<!-- Mapeamento das entidades -->
+
+		<mapping class="model.Cliente" />
+		<mapping class="model.Despesa" />
+		<mapping class="model.Dependente" />
+		<mapping class="model.Estado" />
+		<mapping class="model.Cidade" />
+		<mapping class="model.Produto" />
+		<mapping class="model.Crediario" />
+		<mapping class="model.ParcelasCred" />
+		<mapping class="model.Venda" />
+		<mapping class="model.Produto" />
+		<mapping class="model.Entrada" />
+		<mapping class="model.ItemEntrada" />
+		<mapping class="model.Funcionario" />
+		<mapping class="model.GrupoAcesso" />
+		<mapping class="model.FormaPagamento" />
+		<mapping class="model.CondicaoPagamento" />
+		<mapping class="model.ItemVenda" />
+
+
+
+
+	</session-factory>
+
+</hibernate-configuration>

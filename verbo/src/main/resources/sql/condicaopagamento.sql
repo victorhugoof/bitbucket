@@ -1,0 +1,2 @@
+INSERT INTO condicaopagamento (codigo, descricao) SELECT * FROM (SELECT 1, 'Avista') AS tmp WHERE NOT EXISTS (SELECT descricao FROM condicaopagamento WHERE descricao = 'Avista') LIMIT 1;
+INSERT INTO condicaopagamento (codigo, descricao) SELECT * FROM (SELECT 2, 'Parcelado') AS tmp WHERE NOT EXISTS (SELECT descricao FROM condicaopagamento WHERE descricao = 'Parcelado') LIMIT 1;

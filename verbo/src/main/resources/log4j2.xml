@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration>
+	<Appenders>
+
+		<!-- Console Appender -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{dd/MM/yyyy HH:mm:ss} %-5level [%c{10}:%L] - %msg%n" />
+		</Console>
+
+		<!-- File Appender -->
+		<File name="File" fileName="${sys:catalina.home}/logs/verbo.log">
+			<PatternLayout
+				pattern="%d{dd/MM/yyyy HH:mm:ss} %-5level [%c{10}:%L] - %msg%n" />
+		</File>
+
+		<File name="SQL"
+			fileName="${sys:catalina.home}/logs/verbo_hibernate_error.log">
+			<PatternLayout
+				pattern="%d{dd/MM/yyyy HH:mm:ss} %-5level [%c{10}:%L] - %msg%n" />
+		</File>
+
+	</Appenders>
+	<Loggers>
+
+
+		<Logger name="org.hibernate.SQL" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="org.hibernate" level="warn" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="SQL" />
+		</Logger>
+
+		<Logger name="org.jboss.weld" level="trace" additivity="false" />
+
+		<Logger name="org.hibernate.engine.jdbc" level="warn"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="SQL" />
+		</Logger>
+
+		<Logger name="org.hibernate.tool.hbm2ddl" level="all"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Root level="info">
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>

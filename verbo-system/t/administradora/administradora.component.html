@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-md-12" [style.height.px]="height">
+        <app-grid
+            [dataSource]="dataSource" 
+            [columnDefs]="columnDefs"
+            [modal]="administradoraModal">
+        </app-grid>
+    </div>
+</div>
+<app-administradora-modal #administradoraModal></app-administradora-modal>

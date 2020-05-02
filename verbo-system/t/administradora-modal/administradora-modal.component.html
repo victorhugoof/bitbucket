@@ -1,0 +1,34 @@
+<ng-template #modal let-c="close" let-d="dismiss">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="modal-header">
+      <h4 class="modal-title">Administradora</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Nome</label>
+            <input [formControl]="nome" class="form-control validation-field" placeholder="Nome" type="text" maxlength="128">
+            <small class="text-danger" *ngIf="form.get('nome').touched && form.get('nome').hasError('required')">Nome é obrigatório</small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Cnpj</label>
+            <input [formControl]="cnpj" [clearIfNotMatch]="true" mask="00.000.000/0000-00" class="form-control validation-field" placeholder="Cnpj" type="text">
+            <small class="text-danger" *ngIf="form.get('cnpj').touched && form.get('cnpj').hasError('required')">Cnpj é obrigatório</small>
+            <small class="text-danger" *ngIf="form.get('cnpj').touched && form.get('cnpj').hasError('cnpj')">Cnpj inválido</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button [disabled]="!form.valid" [carregando]="submitObservable" type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</ng-template>

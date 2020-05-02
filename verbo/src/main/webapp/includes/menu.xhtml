@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<ul class="sidebar-menu tree" data-widget="tree">
+		<li><p:link outcome="/index.jsf" onclick="clearBreadCrumbs()">
+				<i class="fa fa-home"></i>
+				<span>Início</span>
+			</p:link></li>
+		<li><p:link outcome="/vendas.jsf" onclick="clearBreadCrumbs()">
+				<i class="fa fa-cart-arrow-down"></i>
+				<span>Vendas</span>
+			</p:link></li>
+		<li class="header">Cadastros</li>
+		<li><p:link outcome="/clientes.jsf">
+				<i class="fa fa-user"></i>
+				<span>Clientes</span>
+			</p:link></li>
+
+		<li><p:link outcome="/dependentes.jsf">
+				<i class="fa fa-user-plus"></i>
+				<span>Dependentes</span>
+			</p:link></li>
+		
+		<ui:fragment rendered="#{logonMB.gerente}">
+		<li><p:link outcome="/funcionarios.jsf">
+				<i class="fa fa-users"></i>
+				<span>Funcionários</span>
+			</p:link></li>
+		</ui:fragment>
+		
+		<ui:fragment rendered="#{logonMB.gerente}">	
+		<li><p:link outcome="/produtos.jsf">
+				<i class="fa fa-shopping-cart"></i>
+				<span>Produtos</span>
+			</p:link></li>
+		</ui:fragment>
+			
+		<li class="header">Movimentos</li>
+		
+		<ui:fragment rendered="#{logonMB.gerente}">
+			<li><p:link outcome="/despesas.jsf">
+					<i class="fa fa-money"></i>
+					<span>Despesas</span>
+				</p:link></li>
+		</ui:fragment>
+		
+		<ui:fragment rendered="#{logonMB.gerente}">
+		<li><p:link outcome="/entradas.jsf">
+				<i class="fa fa-cart-plus"></i>
+				<span>Entradas de produtos</span>
+			</p:link></li>
+		</ui:fragment>
+			
+		<li><p:link outcome="/crediarios.jsf">
+				<i class="fa fa-cart-plus"></i>
+				<span>Crediários</span>
+			</p:link></li>
+		
+		<ui:fragment rendered="#{logonMB.gerente}">
+		<li><p:link outcome="/relatorios.jsf">
+				<i class="fa fa-cart-plus"></i>
+				<span>Emissão de relatórios</span>
+			</p:link></li>
+			</ui:fragment>
+	</ul>
+
+</ui:composition>

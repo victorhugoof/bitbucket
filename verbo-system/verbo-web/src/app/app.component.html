@@ -1,0 +1,31 @@
+<ng-container *ngIf="customLayout; else noCustomLayout">
+  <router-outlet></router-outlet>
+</ng-container>
+<ng-template #noCustomLayout>
+  <mk-layout-wrapper>
+    <mk-layout-header logoLink="/">
+      <mk-layout-header-logo><b>Verbo </b>Systems</mk-layout-header-logo>
+      <mk-layout-header-logo-mini><b>V</b>S</mk-layout-header-logo-mini>
+      <app-header></app-header>
+    </mk-layout-header>
+    <mk-layout-sidebar-left>
+      <app-menu></app-menu>
+    </mk-layout-sidebar-left>
+    <mk-layout-content>
+      <div mk-layout-content-before-header>
+        <div *mkLoadingPage="{checkPendingHttp: true, checkPendingRoute: true}">
+          <!-- <mk-material-bar></mk-material-bar> -->
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </mk-layout-content>
+    <mk-layout-footer>
+      <mk-layout-footer-left>
+        <strong>Desenvolvido por Victor Hugo M. Fernandes .</strong>
+      </mk-layout-footer-left>
+      <mk-layout-footer-right>
+        <b>Versão</b> 2.0.0
+      </mk-layout-footer-right>
+    </mk-layout-footer>
+  </mk-layout-wrapper>
+</ng-template>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces" template="#{layoutMB.template}">
+
+	<ui:define name="metadata">
+		<ui:param name="title" value="Vendas" />
+		<!-- Automatic create breadCrumb and page title when param 'title' is provided. -->
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+
+		<script type="text/javascript">
+			function hotkeys() {
+				$(document).keydown(
+						function(event) {
+							var keycode = (event.keyCode ? event.keyCode
+									: event.which);
+
+							if (PF('consulta_produto').isVisible()) { // se a consulta está aberta
+								// ESC
+								if (keycode == '27') {
+									PF('consulta').hide();
+									event.preventDefault();
+								}
+							} else if (PF('confirmDialog').isVisible()) {
+								// ESC
+								if (keycode == '27') {
+									PF('confirmDialog').hide();
+									event.preventDefault();
+								}
+
+								//S
+								if (keycode == '83') {
+									$('.ui-confirmdialog-yes').click();
+									event.preventDefault();
+								}
+
+								//N
+								if (keycode == '78') {
+									$('.ui-confirmdialog-no').click();
+									event.preventDefault();
+								}
+							} else {
+
+								//F2
+								if (keycode == '113') {
+									$('.btnSalvar').click();
+									event.preventDefault();
+								}
+
+								//F1
+								if (keycode == '112') {
+									$('.btnInserir').click();
+									event.preventDefault();
+								}
+
+								//F8
+								if (keycode == '119') {
+									$('.btnExcluir').click();
+									event.preventDefault();
+								}
+
+								//F4
+								if (keycode == '115') {
+									$('.btnBuscaProduto').click();
+									event.preventDefault();
+								}
+
+								//F7
+								if (keycode == '118') {
+									$('.btnLimpar').click();
+									event.preventDefault();
+								}
+							}
+						});
+
+			}
+
+			hotkeys();
+		</script>
+
+	</ui:define>
+
+	<ui:define name="description">
+        registrar e consultar vendas
+    </ui:define>
+
+	<ui:define name="body">
+		<adm:sidebar collapsed="true" />
+		<p:messages closable="true" escape="false" showDetail="true" showIcon="true" id="msgs">
+				<p:autoUpdate />
+			</p:messages>
+		<h:form id="item">
+			
+			<p:panel header="Itens" styleClass="box-teal">
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-3">
+						<p:outputLabel for="itemvenda_cod_produto" value="Código" />
+
+						<div class="ui-inputgroup">
+							<p:inputNumber decimalPlaces="0" decimalSeparator="" id="itemvenda_cod_produto" placeholder="Busque pelo código" value="#{vendasController.cod_barras}">
+								<p:ajax event="change" update="item finaliza" listener="#{vendasController.listarProdutos()}" process="@this" />
+							</p:inputNumber>
+							<p:commandButton icon="fa fa-search" value="[F4]" styleClass="btn-info btnBuscaProduto" oncomplete="PF('consulta_produto').show();" actionListener="#{vendasController.buscarProdutos}" update="consulta_produto" process="@this" />
+						</div>
+					</div>
+
+					<div class="ui-g-12 ui-md-9">
+						<p:outputLabel for="itemvenda_produto_nome" value="Nome" />
+						<p:inputText id="itemvenda_produto_nome" value="#{vendasController.itemVenda.codigo_produto.descricao}" disabled="true" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="itemvenda_qtd_produto" value="Quantidade" />
+						<p:inputNumber maxValue="#{vendasController.itemVenda.codigo_produto.qt_estoque}" minValue="0.9" symbol="" symbolPosition="p" decimalSeparator="" thousandSeparator="" decimalPlaces="0" id="itemvenda_qtd_produto" value="#{vendasController.itemVenda.quantidade}" required="true" requiredMessage="Informe a quantidade" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="itemvenda_desc" value="Permite desconto" />
+						<p:inputText id="itemvenda_desc" value="#{vendasController.itemVenda.codigo_produto.desconto ? 'Sim' : 'Não' }" readonly="true" disabled="true" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="itemvenda_qt_estoque" value="Estoque" />
+						<p:inputNumber id="itemvenda_qt_estoque" readonly="true" value="#{vendasController.itemVenda.codigo_produto.qt_estoque}" disabled="true" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="itemvenda_vlr_unitario" value="Valor unitario" />
+						<p:inputNumber symbol="R$ " symbolPosition="p" decimalSeparator="," thousandSeparator="." id="itemvenda_vlr_unitario" readonly="#{!vendasController.itemVenda.codigo_produto.desconto}" value="#{vendasController.itemVenda.vl_unit}" required="true" requiredMessage="Informe o valor unitário" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel value="Inserir" />
+						<p:commandButton icon="fa fa-plus" id="inserirItem" value="Inserir [F1]" styleClass="btn-teal btnInserir" update="item finaliza tabelaItemVenda" actionListener="#{vendasController.inserirItem}" process="@form" />
+					</div>
+
+					<div class="ui-g-12 ui-md-12">
+						<p:dataTable styleClass="box-primary" id="tabelaItemVenda" emptyMessage="nenhum item lançado na venda" value="#{vendasController.lista_itemVenda}" rows="7" paginator="true" paginatorPosition="bottom" var="e">
+							<p:column styleClass="centralizado" headerText="Descrição">
+								<h:outputText value="#{e.codigo_produto.descricao}" />
+							</p:column>
+							<p:column styleClass="centralizado" headerText="Quantidade">
+								<h:outputText value="#{e.quantidade}" />
+							</p:column>
+							<p:column styleClass="centralizado" headerText="Valor unitário">
+								<h:outputText value="#{e.codigo_produto.preco}" />
+							</p:column>
+							<p:column styleClass="centralizado" headerText="Sub Total">
+								<h:outputText value="#{e.codigo_produto.preco*e.quantidade}" />
+							</p:column>
+							<p:column width="8%" styleClass="centralizado" style="padding: 10px 0 !important">
+								<p:commandButton id="btnExcluirItem" icon="fa fa-trash" actionListener="#{vendasController.apagaItem}" update="item" process="@this" style="width: 40% !important; margin: 2%">
+									<f:attribute name="item_exclui" value="#{e}" />
+								</p:commandButton>
+								<p:tooltip id="toolTipExcluir" for="btnExcluirItem" value="Excluir item" position="top" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="venda_data_venda" value="Data da Venda" />
+						<p:calendar id="venda_data_venda" pattern="dd/MM/yyyy" mask="true" disabled="true" value="#{vendasController.venda.dt_emissao}" />
+					</div>
+
+					<div class="ui-g-12 ui-md-8" />
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="venda_vlr_total" value="Valor Total" />
+						<p:inputNumber symbol="R$ " symbolPosition="p" decimalSeparator="," thousandSeparator="." id="venda_vlr_total" disabled="true" value="#{vendasController.valorTotal}" />
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+
+
+		<p:separator />
+
+		<h:form id="finaliza">
+			<p:panel header="Finalização" styleClass="box-success">
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="venda_flg_orcamento" value="Tipo" />
+						<p:selectOneMenu id="venda_flg_orcamento" value="#{vendasController.venda.orcamento}">
+							<f:selectItem itemLabel="Venda" itemValue="false" />
+							<f:selectItem itemLabel="Orçamento" itemValue="true" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-3" />
+					<div class="ui-g-12 ui-md-1" />
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="venda_tip_formapag" value="Forma de Pagamento" />
+						<f:selectItem itemLabel="Selecione" />
+						<p:selectOneMenu id="venda_tip_formapag" value="#{vendasController.venda.formaPag}" converter="formaConverter">
+							<f:selectItems value="#{vendasController.lista_forma}" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="venda_tip_condpag" value="Condição de Pagamento" />
+						<f:selectItem itemLabel="Selecione" />
+						<p:selectOneMenu id="venda_tip_condpag" value="#{vendasController.venda.condicaoPag}" converter="condicaoConverter">
+							<f:selectItems value="#{vendasController.lista_condicao}" />
+							<p:ajax event="change" update="finaliza" listener="#{vendasController.seParcelado()}" process="@this"/>
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="venda_qtd_parcelas" value="Qtd." rendered="#{vendasController.parcelado}" id="label_venda_qtd_parcelas" />
+						<p:inputText id="venda_qtd_parcelas" value="#{vendasController.qtd_parcelas}" rendered="#{vendasController.parcelado}"/>
+					</div>
+				</div>
+
+
+
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-3">
+						<p:outputLabel for="venda_cod_cliente" value="Código cliente" />
+
+						<div class="ui-inputgroup">
+							<p:inputNumber decimalPlaces="0" decimalSeparator="" id="venda_cod_cliente" placeholder="Busque pelo código" value="#{vendasController.cliente_id}">
+								<p:ajax event="change" update="venda_cliente_nome" listener="#{vendasController.listarCliente()}" process="@this" />
+							</p:inputNumber>
+							<p:commandButton icon="fa fa-search" value="[F8]" styleClass="btn-info btnBusca" oncomplete="PF('consulta_cliente').show();" actionListener="#{vendasController.buscarClientes}" update="consulta_cliente" process="@this" />
+						</div>
+					</div>
+
+					<div class="ui-g-12 ui-md-9">
+						<p:outputLabel for="venda_cliente_nome" value="Cliente" />
+						<p:inputText id="venda_cliente_nome" value="#{vendasController.nome_cliente}" disabled="true" required="true" requiredMessage="Preencha o cliente" />
+					</div>
+
+				</div>
+
+				<p:separator />
+
+
+				<!-- // MENU  -->
+				<div>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton icon="fa fa-plus" oncomplete="$('html, body').animate({scrollTop:0}, 'slow');" value="Salvar" styleClass="btn-success" actionListener="#{vendasController.salvar}" update="item finaliza" />
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton value="Apagar" icon="fa fa-trash" styleClass="btn-danger">
+								<p:confirm header="Confirmação" message="Tem certeza?" icon="ui-icon-danger" />
+							</p:commandButton>
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton value="Limpar campos" styleClass="btn-info" icon="fa fa-times-circle" actionListener="#{vendasController.limparCampos}" update="item finaliza" process="@this" />
+						</div>
+
+						<div class="ui-g-12 ui-md-3" />
+
+						<div class="ui-g-12 ui-md-3">
+							<div class="ui-inputgroup">
+								<p:inputText id="venda_id" value="#{vendasController.venda.id}" />
+								<p:commandButton icon="fa fa-search" styleClass="btn-info" oncomplete="PF('consultaVenda').show();" actionListener="#{vendasController.listarVendas}" update="tabelaConsultaVenda" process="@this" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
+				<p:commandButton value="Sim" type="button" styleClass="btn-material btn-primary ui-confirmdialog-yes" icon="fa fa-check" />
+				<p:commandButton value="Não" type="button" styleClass="btn-material btn-danger ui-confirmdialog-no" icon="fa fa-close" />
+			</p:confirmDialog>
+		</h:form>
+<!-- 		</h:form> -->
+
+		<p:dialog header="Consultar produtos" showEffect="fade" hideEffect="fade" id="consulta_produto" widgetVar="consulta_produto" modal="true" height="70%" width="70%" appendTo="@(body)" resizable="false" draggable="false" responsive="true">
+			<h:form>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_filtro_produto" value="Filtrar por" />
+						<p:selectOneMenu id="consulta_filtro_produto" value="#{vendasController.filtro_consulta_produto}">
+							<f:selectItem itemLabel="Descricao" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="Cod. de Barras" itemValue="3" />
+							<f:selectItem itemLabel="Preço" itemValue="4" />
+							<f:selectItem itemLabel="Qtd. Estoque" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ativo_produto" value="Status" />
+						<p:selectOneMenu id="consulta_ativo_produto" value="#{vendasController.ativo_consulta_produto}">
+							<f:selectItem itemLabel="Ativo" itemValue="1" />
+							<f:selectItem itemLabel="Inativo" itemValue="2" />
+							<f:selectItem itemLabel="Todos" itemValue="3" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-6" />
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ordem_produto" value="Ordenar por" />
+						<p:selectOneMenu id="consulta_ordem_produto" value="#{vendasController.ordem_consulta_produto}">
+							<f:selectItem itemLabel="Descricao" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="Cod. de Barras" itemValue="3" />
+							<f:selectItem itemLabel="Preço" itemValue="4" />
+							<f:selectItem itemLabel="Qtd. Estoque" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-10">
+						<p:outputLabel for="consulta_like_produto" value="Filtro" />
+						<p:inputText id="consulta_like_produto" value="#{vendasController.like_consulta_produto}" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="btnFiltro_produto" value="" />
+						<p:commandButton icon="fa fa-search" id="btnFiltro_produto" value="Buscar" styleClass="btn-teal" update="tabelaProduto" action="#{vendasController.filtraProdutos()}" process="@form" />
+					</div>
+				</div>
+			</h:form>
+
+
+			<p:dataTable id="tabelaProduto" style="height:100%" styleClass="tableConsulta" widgetVar="tabela" reflow="true" rows="5" paginator="true" var="c" value="#{vendasController.lista_produto}" emptyMessage="Nenhum produto cadastrado">
+
+				<!-- COLUNAS -->
+				<p:column headerText="Cod." width="5%" styleClass="centralizado">
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{c.descricao}" escape="false" />
+				</p:column>
+				<p:column headerText="Cód. de barras" width="12%" styleClass="centralizado">
+					<h:outputText value="#{c.cod_barras}" />
+				</p:column>
+				<p:column headerText="Preço" width="12%" styleClass="centralizado">
+					<h:outputText value="#{c.preco}">
+						<f:convertNumber currencySymbol="R$" type="currency" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Qtd. Estoque" width="12%" styleClass="centralizado">
+					<h:outputText value="#{c.qt_estoque}" />
+				</p:column>
+				<p:column headerText="Ativo" width="5%" styleClass="centralizado">
+					<h:outputText value="#{c.flg_ativo ? 'Sim' : 'Não'}" />
+				</p:column>
+
+
+				<!-- COLUNA FUNÇÕES -->
+				<p:column width="5%" styleClass="centralizado">
+					<p:commandButton id="btnEditar" icon="fa fa-plus" actionListener="#{vendasController.selecionaProduto}" oncomplete="PF('consulta_produto').hide()" update="item" process="@this">
+						<f:attribute name="setPro" value="#{c}" />
+					</p:commandButton>
+					<p:tooltip id="toolTipEditar" for="btnEditar" value="Selecionar produto" position="top" />
+				</p:column>
+			</p:dataTable>
+		</p:dialog>
+
+		<p:dialog header="Consultar clientes" id="consulta_cliente" styleClass="consulta" widgetVar="consulta_cliente" modal="true" height="70%" width="70%" appendTo="@(body)" resizable="false" draggable="false" responsive="true">
+			<h:form>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_filtro_cliente" value="Filtrar por" />
+						<p:selectOneMenu id="consulta_filtro_cliente" value="#{vendasController.filtro_consulta}">
+							<f:selectItem itemLabel="Nome" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="CPF" itemValue="3" />
+							<f:selectItem itemLabel="Cidade" itemValue="4" />
+							<f:selectItem itemLabel="UF" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ativo" value="Status" />
+						<p:selectOneMenu id="consulta_ativo" value="#{vendasController.ativo_consulta}">
+							<f:selectItem itemLabel="Ativo" itemValue="1" />
+							<f:selectItem itemLabel="Inativo" itemValue="2" />
+							<f:selectItem itemLabel="Todos" itemValue="3" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-6" />
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ordem" value="Ordenar por" />
+						<p:selectOneMenu id="consulta_ordem" value="#{vendasController.ordem_consulta}">
+							<f:selectItem itemLabel="Nome" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="CPF" itemValue="3" />
+							<f:selectItem itemLabel="Cidade" itemValue="4" />
+							<f:selectItem itemLabel="UF" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-10">
+						<p:outputLabel for="consulta_like" value="Filtro" />
+						<p:inputText id="consulta_like" value="#{vendasController.like_consulta}" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="btnFiltro" value="" />
+						<p:commandButton icon="fa fa-search" id="btnFiltro" value="Buscar" styleClass="btn-teal" update="consultaCliente" action="#{vendasController.filtraClientes()}"/>
+					</div>
+				</div>
+			</h:form>
+
+			<p:dataTable id="consultaCliente" style="height:100%" styleClass="ConsultaCliente" widgetVar="tabela" reflow="true" rows="5" paginator="true" var="c" value="#{vendasController.lista_cliente}" emptyMessage="Nenhuma cliente cadastrado">
+
+				<!-- COLUNAS -->
+				<p:column headerText="Cod." width="5%" styleClass="centralizado">
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{c.nome}" escape="false" />
+				</p:column>
+				<p:column headerText="CPF" width="12%" styleClass="centralizado">
+					<h:outputText value="#{c.cpf}" />
+				</p:column>
+				<p:column headerText="Cidade" width="12%" styleClass="centralizado">
+					<h:outputText value="#{c.cidade.nome}" />
+				</p:column>
+				<p:column headerText="UF" width="4%" styleClass="centralizado">
+					<h:outputText value="#{c.uf.uf}" />
+				</p:column>
+				<p:column headerText="Ativo" width="5%" styleClass="centralizado">
+					<h:outputText value="#{c.flg_ativo ? 'Sim' : 'Não'}" />
+				</p:column>
+
+
+				<!-- COLUNA FUNÇÕES -->
+				<p:column width="5%" styleClass="centralizado">
+					<p:commandButton id="btnEditar" icon="fa fa-plus" actionListener="#{vendasController.selecionaCliente}" oncomplete="PF('consulta_cliente').hide();" update="finaliza:venda_cliente_nome" process="@this">
+						<f:attribute name="cli_seleciona" value="#{c}" />
+					</p:commandButton>
+					<p:tooltip id="toolTipEditar" for="btnEditar" value="Selecionar cliente" position="top" />
+				</p:column>
+			</p:dataTable>
+		</p:dialog>
+
+		<p:dialog header="Consultar vendas" id="consultaVenda" widgetVar="consultaVenda" modal="true" height="70%" width="70%" appendTo="@(body)" resizable="false" draggable="false" responsive="true">
+			<p:dataTable id="tabelaConsultaVenda" style="height:100%" widgetVar="tabelaVenda" reflow="true" rows="10" paginator="true" var="v" value="#{vendasController.lista_venda}" emptyMessage="Nenhum venda realizada">
+
+				<!-- COLUNAS -->
+				<p:column width="5%">
+					<p:commandButton style=" border:none!important; background:none!important;" id="btnSetVen" value="#{v.id}" actionListener="#{vendasController.selecionaVenda}" oncomplete="PF('consultaVenda').hide();" update="@(:input) " process="@this">
+						<f:attribute name="setVen" value="#{p}" />
+					</p:commandButton>
+					<p:tooltip id="toolTipEditar" for="btnSetVen" value="Selecionar venda" position="top" />
+				</p:column>
+				<p:column headerText="Condição" width="10%">
+					<h:outputText value="#{v.condicaoPag}" />
+				</p:column>
+				<p:column headerText="Data da venda" width="40%">
+					<h:outputText value="#{v.dt_emissao}" escape="false"></h:outputText>
+				</p:column>
+				<p:column headerText="Cliente" width="20%">
+					<h:outputText value="#{v.codigo_cliente}" escape="false" />
+				</p:column>
+				<p:column headerText="Valor" width="20%">
+					<h:outputText value="#{v.valor}" escape="false" />
+				</p:column>
+				<p:column headerText="Ativo" width="10%">
+					<h:outputText value="#{v.flg_ativo ? 'Sim' : 'Não'}" />
+				</p:column>
+
+
+				<!-- COLUNA FUNÇÕES -->
+			</p:dataTable>
+		</p:dialog>
+
+
+
+	</ui:define>
+
+</ui:composition>

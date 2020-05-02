@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces" template="#{layoutMB.template}">
+
+	<ui:define name="metadata">
+		<ui:param name="title" value="Produtos" />
+
+
+		<script type="text/javascript">
+			function hotkeys() {
+				$(document).keydown(
+						function(event) {
+							var keycode = (event.keyCode ? event.keyCode
+									: event.which);
+
+							if (PF('consulta').isVisible()) { // se a consulta está aberta
+								// ESC
+								if (keycode == '27') {
+									PF('consulta').hide();
+									event.preventDefault();
+								}
+							} else if (PF('confirmDialog').isVisible()) {
+								// ESC
+								if (keycode == '27') {
+									PF('confirmDialog').hide();
+									event.preventDefault();
+								}
+
+								//S
+								if (keycode == '83') {
+									$('.ui-confirmdialog-yes').click();
+									event.preventDefault();
+								}
+
+								//N
+								if (keycode == '78') {
+									$('.ui-confirmdialog-no').click();
+									event.preventDefault();
+								}
+							} else {
+
+								//F2
+								if (keycode == '113') {
+									$('.btnSalvar').click();
+									event.preventDefault();
+								}
+
+								//F8
+								if (keycode == '119') {
+									$('.btnExcluir').click();
+									event.preventDefault();
+								}
+
+								//F4
+								if (keycode == '115') {
+									$('.btnBusca').click();
+									event.preventDefault();
+								}
+
+								//F7
+								if (keycode == '118') {
+									$('.btnLimpar').click();
+									event.preventDefault();
+								}
+							}
+						});
+
+			}
+
+			hotkeys();
+		</script>
+
+	</ui:define>
+
+	<ui:define name="description">
+        consulte e cadastre os produtos
+    </ui:define>
+
+
+	<ui:define name="body">
+		<h:form id="produto">
+
+			<p:messages closable="true" escape="false" showDetail="false" showIcon="true" id="msgs">
+				<p:autoUpdate />
+			</p:messages>
+			<div class="box box-primary">
+				<div class="box-header with-border">
+
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-4">
+							<p:outputLabel for="produto_id" value="Código" />
+							<div class="ui-inputgroup">
+								<p:inputText id="produto_id" placeholder="Busque pelo código" value="#{produtosController.produto.id}">
+									<p:ajax event="change" update="@(:input) produto " listener="#{produtosController.listar()}" process="@this" />
+								</p:inputText>
+								<p:commandButton icon="fa fa-search" value="[F4]" styleClass="btn-info btnBusca" oncomplete="PF('consulta').show();" actionListener="#{produtosController.listarProdutos}" update="tabelaConsulta produto:consulta" process="@this" />
+							</div>
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:outputLabel for="produto_qtd_estoque" value="Qtd. em estoque" rendered="#{produtosController.selecionado}" />
+							<p:inputText id="produto_qtd_estoque" rendered="#{produtosController.selecionado}" readonly="true" value="#{produtosController.produto.qt_estoque}" />
+						</div>
+					</div>
+
+					<h:form id="cadastro">
+
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-8">
+								<p:outputLabel for="produto_descricao" value="Descrição" />
+								<p:inputText id="produto_descricao" value="#{produtosController.produto.descricao}" rendered="true" requiredMessage="Informe uma descrição" maxlength="80" />
+							</div>
+
+							<div class="ui-g-12 ui-md-4">
+								<p:outputLabel for="produto_cod_barra" value="Cod. de barras" />
+								<p:inputNumber decimalPlaces="0" decimalSeparator=" " thousandSeparator=" " id="produto_cod_barra" value="#{produtosController.produto.cod_barras}" required="true" requiredMessage="Informe um codigo de barras" maxlength="15" />
+							</div>
+
+						</div>
+
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-4">
+								<p:outputLabel for="produto_tip_produto" value="Tipo de produto" />
+								<p:selectOneMenu id="produto_tip_produto" value="#{produtosController.produto.servico}">
+									<f:selectItem itemLabel="Serviço" itemValue="1" />
+									<f:selectItem itemLabel="Produto" itemValue="2" />
+								</p:selectOneMenu>
+							</div>
+
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="produto_vlr_venda" value="Valor de venda" />
+								<p:inputNumber symbol="R$ " symbolPosition="p" decimalSeparator="," thousandSeparator="." id="produto_vlr_venda" value="#{produtosController.produto.preco}" required="true" requiredMessage="Informe o preço" />
+							</div>
+
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="produto_flg_desconto" value="Permite desconto" />
+								<p:selectBooleanButton id="produto_flg_desconto" value="#{produtosController.produto.desconto}" onLabel="Sim" offLabel="Não" onIcon="ui-icon-check" offIcon="ui-icon-close" />
+							</div>
+						</div>
+
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-12">
+								<p:outputLabel for="produto_observacao" value="Observações" style="margin-top: 20px" />
+								<p:inputTextarea id="produto_observacao" value="#{produtosController.produto.observacoes}" rows="6" style="width: 100%" />
+							</div>
+						</div>
+					</h:form>
+
+
+
+
+					<p:separator />
+
+
+					<!-- // MENU  -->
+					<!-- 					 <h:form id="botoes"> -->
+					<div id="main-buttons" class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton id="btnSalvar" oncomplete="$('html, body').animate({scrollTop:0}, 'slow');" icon="fa fa-plus" update="produto" value="Salvar [F2]" actionListener="#{produtosController.salvar}" styleClass="btn-success btnSalvar" />
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton id="btnLimpar" value="Limpar [F7]" oncomplete="$('html, body').animate({scrollTop:0}, 'slow');" actionListener="#{produtosController.limparCampos}" styleClass="btn-info btnLimpar" icon="fa fa-times-circle" update="produto" process="@parent" />
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton id="btnDstv" update="produto produto:msgs" oncomplete="$('html, body').animate({scrollTop:0}, 'slow');" value="Desativar [F8]" process="@this" rendered="#{produtosController.produto.flg_ativo and produtosController.selecionado}" actionListener="#{produtosController.apagar}" icon="fa fa-toggle-off" styleClass="btn-danger btnExcluir">
+								<p:confirm header="Confirmação" message="Desativar produto?" icon="ui-icon-danger" />
+							</p:commandButton>
+							<p:commandButton id="btnAtv" update="produto produto:msgs" oncomplete="$('html, body').animate({scrollTop:0}, 'slow');" value="Ativar [F8]" process="@this" rendered="#{!produtosController.produto.flg_ativo and produtosController.selecionado }" actionListener="#{produtosController.apagar}" icon="fa fa-toggle-on" styleClass="btn-success btnExcluir">
+								<p:confirm header="Confirmação" message="Ativar produto?" icon="ui-icon-success" />
+							</p:commandButton>
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:commandButton id="btnExcluir" oncomplete="$('html, body').animate({scrollTop:0}, 'slow');" update="produto" value="Excluir [F3]" process="@this" rendered="#{produtosController.selecionado}" disabled="#{!(produtosController.selecionado)}" actionListener="#{produtosController.excluir}" icon="fa fa-trash" styleClass="btn-fatal btnDeletar">
+								<p:confirm header="Confirmação" message="Excluir produto?" icon="ui-icon-success" />
+							</p:commandButton>
+						</div>
+					</div>
+					<!-- 					</h:form> -->
+
+				</div>
+			</div>
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-12 ui-md-2">
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid" widgetVar="confirmDialog">
+						<p:commandButton value="Sim [S]" type="button" styleClass="btn-material btn-danger ui-confirmdialog-yes" icon="fa fa-check" />
+						<p:commandButton value="Não [N]" type="button" styleClass="btn-material btn-danger ui-confirmdialog-no" icon="fa fa-close" />
+					</p:confirmDialog>
+				</div>
+			</div>
+
+
+			<p:dialog header="Consultar produtos" id="consulta" widgetVar="consulta" modal="true" height="70%" width="70%" appendTo="@(body)" resizable="false" draggable="false" responsive="true">
+				<h:form>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-2">
+							<p:outputLabel for="consulta_filtro" value="Filtrar por" />
+							<p:selectOneMenu id="consulta_filtro" value="#{produtosController.filtro_consulta}">
+								<f:selectItem itemLabel="Descrição" itemValue="2" />
+								<f:selectItem itemLabel="Codigo" itemValue="1" />
+								<f:selectItem itemLabel="Codigo de barras" itemValue="3" />
+							</p:selectOneMenu>
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:outputLabel for="consulta_ativo" value="Status" />
+							<p:selectOneMenu id="consulta_ativo" value="#{produtosController.ativo_consulta}">
+								<f:selectItem itemLabel="Ativo" itemValue="1" />
+								<f:selectItem itemLabel="Inativo" itemValue="2" />
+								<f:selectItem itemLabel="Todos" itemValue="3" />
+							</p:selectOneMenu>
+						</div>
+
+						<div class="ui-g-12 ui-md-6" />
+
+						<div class="ui-g-12 ui-md-2">
+							<p:outputLabel for="consulta_ordem" value="Ordenar por" />
+							<p:selectOneMenu id="consulta_ordem" value="#{produtosController.ordem_consulta}">
+								<f:selectItem itemLabel="Descrição" itemValue="2" />
+								<f:selectItem itemLabel="Codigo" itemValue="1" />
+								<f:selectItem itemLabel="Codigo de Barras" itemValue="3" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-10">
+							<p:outputLabel for="consulta_like" value="Filtro" />
+							<p:inputText id="consulta_like" value="#{produtosController.like_consulta}" />
+						</div>
+
+						<div class="ui-g-12 ui-md-2">
+							<p:outputLabel for="btnFiltro" value="" />
+							<p:commandButton icon="fa fa-search" id="btnFiltro" value="Buscar" styleClass="btn-teal" update="produto:tabelaConsulta" action="#{produtosController.filtraProdutos()}" process="@form" />
+						</div>
+					</div>
+				</h:form>
+				<p:dataTable id="tabelaConsulta" style="height:100%" widgetVar="tabela" reflow="true" rows="10" paginator="true" var="a" value="#{produtosController.lista_produto}" emptyMessage="Nenhum produto cadastrado">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="10%">
+						<h:outputText value="#{a.id}" />
+					</p:column>
+					<p:column headerText="Descrição" width="50%" sortBy="p.descricao">
+						<h:outputText value="#{a.descricao}" escape="false" />
+					</p:column>
+					<p:column headerText="Código de barras" width="40%">
+						<h:outputText value="#{a.cod_barras}" escape="false" />
+					</p:column>
+					<p:column headerText="Preço" width="20%">
+						<h:outputText value="#{a.preco}" escape="false" />
+					</p:column>
+					<p:column headerText="Permite desconto" width="15%">
+						<h:outputText value="#{a.desconto ? 'Sim' : 'Não'}" />
+					</p:column>
+					<p:column headerText="Ativo" width="10%">
+						<h:outputText value="#{a.flg_ativo ? 'Sim' : 'Não'}" />
+					</p:column>
+
+
+					<!-- COLUNA FUNÇÕES -->
+					<p:column width="25%">
+						<p:commandButton id="btnEditar" icon="ui-icon-pencil" actionListener="#{produtosController.seleciona}" oncomplete="PF('consulta').hide();" update="@(:input) produto" process="@this">
+							<f:attribute name="pro_edita" value="#{a}" />
+						</p:commandButton>
+						<p:tooltip id="toolTipEditar" for="btnEditar" value="Editar produto" position="top" />
+
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

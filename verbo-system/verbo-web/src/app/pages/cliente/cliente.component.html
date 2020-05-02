@@ -1,0 +1,125 @@
+<div class="box box-primary">
+  <div class="box-body">
+    <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+          <div class="ui-g-12 ui-md-12">
+            <div class="row">
+              <div class="ui-g-12 ui-md-2">
+                <label for="id">Código</label>
+                <div class="ui-inputgroup">
+                  <input type="text" pInputText placeholder="Busque pelo código" id="id" formControlName="id">
+                  <button pButton type="button" icon="fa fa-search" class="ui-button-info"
+                    (click)="showConsulta()"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="ui-g-12 ui-md-8">
+                <div class="form-group">
+                  <label for="nom_pessoa">Nome</label>
+                  <input type="text" pInputText id="nom_pessoa" formControlName="nomPessoa">
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-4">
+                <div class="form-group">
+                  <label for="num_cpf">CPF</label>
+                  <p-inputMask mask="999.999.999-99" id="num_cpf" formControlName="numCpf"></p-inputMask>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="ui-g-12 ui-md-4">
+                <div class="form-group">
+                  <label for="dat_nasc">Data de Nascimento</label>
+                  <p-calendar dateFormat="dd/mm/yy" [showIcon]="false" id="dat_nasc" formControlName="datNasc">
+                  </p-calendar>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-4">
+                <div class="form-group">
+                  <label for="num_telefone">Telefone</label>
+                  <p-inputMask mask="(99) 9999-9999?9" id="num_telefone" formControlName="numTelefone"></p-inputMask>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-4">
+                <div class="form-group">
+                  <label for="flg_sexo">Sexo</label>
+                  <div class="ui-g-12 ui-md-12">
+                    <p-radioButton name="flg_sexo" value="M" label="Masculino" formControlName="flgSexo">
+                    </p-radioButton>
+                    <p-radioButton name="flg_sexo" value="F" label="Feminino" formControlName="flgSexo"></p-radioButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="ui-g-12 ui-md-4">
+                <div class="form-group">
+                  <label for="estado">Estado</label>
+                  <p-dropdown placeholder="Selecione um estado" [options]="estados" optionLabel="nomEstado"
+                    formControlName="estado" (onChange)="buscaCidades()"></p-dropdown>
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-4">
+                <div class="form-group">
+                  <label for="cidade">Cidade</label>
+                  <p-dropdown placeholder="Selecione uma cidade" [options]="cidades" optionLabel="nomCidade"
+                    formControlName="cidade"></p-dropdown>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="ui-g-12 ui-md-3">
+                <div class="form-group">
+                  <label for="vlr_limite">Limite de Crédito</label>
+                  <input type="text" pInputText id="vlr_limite" formControlName="vlrLimiteCredito">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="ui-g-12 ui-md-5">
+                <div class="form-group">
+                  <label for="vlr_limite">Observações</label>
+                  <textarea pInputTextarea id="nom_observacoes" rows="6" formControlName="nomObservacoes"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <hr class="ui-separator ui-state-default ui-corner-all">
+
+            <div class="row">
+              <div class="ui-g-12 ui-md-12">
+                <div class="ui-g-12 ui-md-2">
+                  <button pButton type="submit" label="Salvar" class="ui-button-success"
+                    [disabled]="!formulario.valid"></button>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                  <button pButton type="button" (click)="limpar()" label="Limpar"
+                    class="ui-button-primary btn-primary"></button>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                  <button pButton type="button" label="Secondary" class="ui-button-secondary btn-default"></button>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                  <button pButton type="button" label="Info" class="ui-button-info"></button>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                  <button pButton type="button" label="Warning" class="ui-button-warning"></button>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                  <button pButton type="button" label="Danger" class="ui-button-danger"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

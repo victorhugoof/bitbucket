@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="#{layoutMB.template}">
+
+	<ui:define name="metadata">
+		<ui:param name="title" value="Emitir Relatórios" />
+		<!-- Automatic create breadCrumb and page title when param 'title' is provided. -->
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+		<script type="text/javascript">
+		function hotkeys(){
+			$(document).keydown(function(event){
+		        var keycode = (event.keyCode ? event.keyCode : event.which);
+		     	
+		            //F2
+			        if(keycode == '113'){
+			        	$('.btnSalvar').click();
+			        }
+			        			    	        
+			        //F7
+			        if(keycode == '118'){
+			        	$('.btnLimpar').click();
+			        }  
+			      
+		        }
+		    
+
+		}
+		    
+		    
+		    hotkeys();  
+		</script>
+	</ui:define>
+
+	<ui:define name="description">
+        Emitir Relatórios
+    </ui:define>
+
+
+	<ui:define name="body">
+		<h:form id="relatorio">
+			<p:messages closable="true" escape="false" showDetail="true"
+				showIcon="true" id="msgs">
+				<p:autoUpdate />
+			</p:messages>
+
+			<div class="box box-primary">
+				<div class="box-header with-border">
+
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-7">
+							<p:outputLabel for="relatorios"
+								value="Selecione um tipo de Relatório:" />
+							<p:selectOneRadio id="relatorios" layout="grid" columns="6"
+								value="#{relatoriosController.var}">
+								<f:selectItem itemLabel="Balanço" itemValue="1" />
+								<f:selectItem itemLabel="Clientes" itemValue="2" />
+								<f:selectItem itemLabel="Funcionarios" itemValue="3" />
+								<f:selectItem itemLabel="Despesas" itemValue="4" />
+								<f:selectItem itemLabel="Produtos" itemValue="5" />
+								<f:selectItem itemLabel="Vendas" itemValue="6" />
+								<p:ajax event="change"
+									listener="#{relatoriosController.selcombo()}"
+									update="relatorio porbalanco porclientes porfuncionarios porgastos porprodutos porvendas"
+									process="@this" />
+							</p:selectOneRadio>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- POR BALANÇO -->
+			<h:form id="porbalanco" rendered="#{relatoriosController.balanco}">
+				<div class="box box-primary">
+					<div class="box-header no-border">
+
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<h:outputText value="Filtrar por data: " />
+								<p:inputSwitch id="Balancodata"
+									value="#{relatoriosController.pordata}">
+									<p:ajax listener="#{relatoriosController.checkdata()}"
+										process="@this" update="relatorio" />
+								</p:inputSwitch>
+							</div>
+							<div class="ui-g-12 ui-md-4">
+								<h:outputText value="Comparar com entradas e despesas(gastos):" />
+								<p:inputSwitch id="BalancoEnt"
+									value="#{relatoriosController.porgastos}">
+								</p:inputSwitch>
+							</div>
+						</div>
+
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="inicio_data" value="Inicio"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="inicio_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datainicio}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="fim_data" value="Fim"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="fim_data" showOn="button" pattern="dd/MM/yyyy"
+									mask="true" value="#{relatoriosController.datafim}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+						</div>
+
+						<p:dataTable id="tabelaBalanco" style="height:100%"
+							styleClass="tableBalanco" widgetVar="tabela" reflow="true"
+							var="a" value="#{relatoriosController.lista_balanco}"
+							emptyMessage="Nenhuma filtro utilizado"
+							rendered="#{relatoriosController.tabelabalanco}">
+							<!-- COLUNAS -->
+							<p:column headerText="Data" width="12%">
+								<h:outputText value="#{a.codigo_venda.dt_emissao}"
+									escape="false" />
+							</p:column>
+							<p:column headerText="Descrição" styleClass="centralizado">
+								<h:outputText value="#{a.codigo_produto.descricao}" />
+							</p:column>
+							<p:column headerText="Valor" width="12%"
+								styleClass="centralizado">
+								<h:outputText value="#{a.codigo_venda.valor}" />
+							</p:column>
+
+							<p:summaryRow>
+								<p:column colspan="3" style="text-align:right">
+									<h:outputText value="Total:" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{a.codigo_venda.valor}">
+										<f:convertNumber type="currency" currencySymbol="$" />
+									</h:outputText>
+								</p:column>
+							</p:summaryRow>
+
+						</p:dataTable>
+						<!-- // MENU  -->
+						<div id="main-buttons">
+							<p:commandButton icon="fa fa-plus" value="Emitir [F2]"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								id="btnSalvar" styleClass="btn-success btnSalvar"
+								actionListener="#{relatoriosController.emitebalanco()}"
+								update="relatorio porbalanco" />
+							<p:spacer width="5" />
+
+
+
+							<p:commandButton value="Desfazer [F7]"
+								styleClass="btn-info btnLimpar"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								icon="fa fa-times-circle" update="relatorio" process="@this"
+								actionListener="#{relatoriosController.desfazer()}">
+								<p:resetInput target="relatorio" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+
+				<h3>Exportar tabela aqui:</h3>
+				<h:commandLink>
+					<h:graphicImage value="resources/images/excel.png" />
+					<p:dataExporter type="xls" target="tabelabalanco"
+						fileName="tabelabalanco" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tabelabalanco"
+						fileName="tabelabalanco" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/csv.png" />
+					<p:dataExporter type="csv" target="tabelabalanco"
+						fileName="tabelabalanco" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/xml.png" />
+					<p:dataExporter type="xml" target="tabelabalanco"
+						fileName="tabelabalanco" />
+				</h:commandLink>
+			</h:form>
+			<!-- POR CLIENTES -->
+			<h:form id="porclientes" rendered="#{relatoriosController.clientes}">
+				<div class="box box-primary">
+					<div class="box-header no-border">
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-2">
+								<p:outputLabel for="consulta_filtro" value="Filtrar por" />
+								<p:selectOneMenu id="consulta_filtro"
+									value="#{relatoriosController.filtro_consulta}">
+									<f:selectItem itemLabel="Nome" itemValue="2" />
+									<f:selectItem itemLabel="Codigo" itemValue="1" />
+									<f:selectItem itemLabel="CPF" itemValue="3" />
+								</p:selectOneMenu>
+							</div>
+
+							<div class="ui-g-12 ui-md-5">
+								<p:outputLabel for="consulta_filtro" value="" />
+								<div class="ui-inputgroup">
+
+									<p:inputText id="produto" placeholder="Escolha o filtro"
+										value="#{relatoriosController.like_consulta}">
+										<p:ajax event="change" update="relatorio porclientes"
+											listener="#{relatoriosController.relatoriocliente()}"
+											process="@this" />
+									</p:inputText>
+								</div>
+							</div>
+
+						</div>
+						<!-- // MENU BOTOES  -->
+						<div id="main-buttons">
+							<p:commandButton icon="fa fa-plus" value="Emitir [F2]"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								id="btnSalvar" styleClass="btn-success btnSalvar"
+								actionListener="#{relatoriosController.relatoriocliente()}"
+								update="relatorio porclientes" />
+							<p:spacer width="5" />
+
+							<p:commandButton value="Desfazer [F7]"
+								styleClass="btn-info btnLimpar"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								icon="fa fa-times-circle" update="relatorio porclientes"
+								process="@this"
+								actionListener="#{relatoriosController.desfazer()}">
+								<p:resetInput target="relatorio" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<p:dataTable id="tabelaBuscaCLiente" style="height:100%"
+					styleClass="tabelaBuscaCLiente" widgetVar="tabela" reflow="true"
+					rows="5" paginator="true" var="a"
+					value="#{relatoriosController.lista_cliente}"
+					emptyMessage="Nenhuma cliente cadastrado"
+					rendered="#{relatoriosController.tabelaclientes}">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="5%" styleClass="centralizado">
+						<h:outputText value="#{a.id}" />
+					</p:column>
+					<p:column headerText="Nome" sortBy="a.nome">
+						<h:outputText value="#{a.nome}" escape="false" />
+					</p:column>
+					<p:column headerText="CPF" width="12%" styleClass="centralizado">
+						<h:outputText converter="cpfConverter" value="#{a.cpf}" />
+					</p:column>
+					<p:column headerText="Cidade" width="12%" styleClass="centralizado">
+						<h:outputText value="#{a.cidade.nome}" />
+					</p:column>
+					<p:column headerText="UF" width="4%" styleClass="centralizado">
+						<h:outputText value="#{a.uf.uf}" />
+					</p:column>
+					<p:column headerText="Ativo" width="5%" styleClass="centralizado">
+						<h:outputText value="#{a.flg_ativo ? 'Sim' : 'Não'}" />
+					</p:column>
+
+
+					<!-- COLUNA FUNÇÕES -->
+					<p:column width="5%" styleClass="centralizado">
+						<p:commandButton id="btnEditar" icon="ui-icon-pencil"
+							actionListener="#{relatoriosController.infocrediario()}"
+							oncomplete="PF('consulta').show()" process="@this">
+							<f:attribute name="cli_edita" value="#{c}" />
+						</p:commandButton>
+						<p:tooltip id="toolTipEditar" for="btnEditar"
+							value="Editar cliente" position="top" />
+					</p:column>
+
+
+				</p:dataTable>
+
+				<h3>Exportar tabela aqui:</h3>
+				<h:commandLink>
+					<h:graphicImage value="resources/images/excel.png" />
+					<p:dataExporter type="xls" target="tabelaBuscaCLiente"
+						fileName="tabelaBuscaCLiente" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tabelaBuscaCLiente"
+						fileName="tabelaBuscaCLiente" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/csv.png" />
+					<p:dataExporter type="csv" target="tabelaBuscaCLiente"
+						fileName="tabelaBuscaCLiente" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/xml.png" />
+					<p:dataExporter type="xml" target="tabelaBuscaCLiente"
+						fileName="tabelaBuscaCLiente" />
+				</h:commandLink>
+			</h:form>
+			<!-- POR FUNCIONARIO -->
+			<h:form id="porfuncionarios"
+				rendered="#{relatoriosController.funcionarios}">
+
+				<div class="box box-primary">
+					<div class="box-header no-border">
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-2">
+								<p:outputLabel for="consulta_filtro" value="Filtrar por" />
+								<p:selectOneMenu id="consulta_filtro"
+									value="#{relatoriosController.filtro_consulta}">
+									<f:selectItem itemLabel="Nome" itemValue="2" />
+									<f:selectItem itemLabel="Codigo" itemValue="1" />
+									<f:selectItem itemLabel="CPF" itemValue="3" />
+								</p:selectOneMenu>
+							</div>
+
+							<div class="ui-g-12 ui-md-5">
+								<p:outputLabel for="consulta_filtro" value="" />
+								<div class="ui-inputgroup">
+									<p:inputText id="produto" placeholder="Escolha o filtro"
+										value="#{relatoriosController.like_consulta}">
+										<p:ajax event="change" update="relatorio porfuncionarios"
+											listener="#{relatoriosController.relatoriofuncionarios()}"
+											process="@this" />
+									</p:inputText>
+								</div>
+							</div>
+						</div>
+
+
+
+						<!-- // MENU  -->
+						<div id="main-buttons">
+							<p:commandButton icon="fa fa-plus" value="Emitir [F2]"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								id="btnSalvar" styleClass="btn-success btnSalvar"
+								actionListener="#{relatoriosController.relatoriofuncionarios()}"
+								update="relatorio porfuncionarios " />
+							<p:spacer width="5" />
+
+
+
+							<p:commandButton value="Desfazer [F7]"
+								styleClass="btn-info btnLimpar"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								icon="fa fa-times-circle" update="relatorio porfuncionarios"
+								process="@this"
+								actionListener="#{relatoriosController.desfazer()}">
+								<p:resetInput target="relatorio" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+
+				<p:dataTable id="tblFunc" style="height:100%" styleClass="tblFunc"
+					widgetVar="tblFunc" reflow="true" rows="5" paginator="true" var="a"
+					value="#{relatoriosController.lista_funcionario}"
+					emptyMessage="Nenhuma cliente cadastrado"
+					rendered="#{relatoriosController.tabelafuncionario}" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="5%" styleClass="centralizado">
+						<f:facet name="header">
+							<h:outputText value="Cod." />
+						</f:facet>
+						<h:outputText value="#{a.id}" />
+					</p:column>
+					<p:column headerText="Nome" sortBy="a.nome">
+						<f:facet name="header">
+							<h:outputText value="Nome"  />
+						</f:facet>
+						<h:outputText value="#{a.nome}" escape="false" />
+					</p:column>
+					<p:column headerText="CPF" width="12%" styleClass="centralizado">
+						<f:facet name="header">
+							<h:outputText value="CPF" />
+						</f:facet>
+						<h:outputText converter="cpfConverter" value="#{a.cpf}" />
+					</p:column>
+					<p:column headerText="Cidade" width="12%" styleClass="centralizado">
+						<f:facet name="header">
+							<h:outputText value="Cidade" />
+						</f:facet>
+						<h:outputText value="#{a.cidade.nome}" />
+					</p:column>
+					<p:column headerText="UF" width="4%" styleClass="centralizado">
+						<f:facet name="header">
+							<h:outputText value="UF" />
+						</f:facet>
+						<h:outputText value="#{a.uf.uf}" />
+					</p:column>
+					<p:column headerText="Ativo" width="5%" styleClass="centralizado">
+						<f:facet name="header">
+							<h:outputText value="Ativo" />
+							</f:facet>
+							<h:outputText value="#{a.flg_ativo ? 'Sim' : 'Não'}" />
+					</p:column>
+
+
+					<!-- COLUNA FUNÇÕES -->
+					<p:column width="5%" styleClass="centralizado">
+						<p:commandButton id="btnEditar" icon="ui-icon-pencil"
+							actionListener="#{relatoriosController.editarfuncionario()}"
+							oncomplete="PF('consulta').show()" process="@this">
+							<f:attribute name="cli_edita" value="#{c}" />
+						</p:commandButton>
+						<p:tooltip id="toolTipEditar" for="btnEditar"
+							value="Editar cliente" position="top" />
+					</p:column>
+
+
+				</p:dataTable>
+				<h3>Exportar tabela aqui:</h3>
+				<h:commandLink>
+					<h:graphicImage value="resources/images/excel.png" />
+					<p:dataExporter type="xls" target="tblFunc" fileName="funcionarios" pageOnly="true"/>
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tblFunc" fileName="funcionarios" pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/csv.png" />
+					<p:dataExporter type="csv" target="tblFunc" fileName="funcionarios" pageOnly="true" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/xml.png" />
+					<p:dataExporter type="xml" target="tblFunc" fileName="funcionarios" pageOnly="true" />
+				</h:commandLink>
+			</h:form>
+			<!-- POR GASTOS -->
+			<h:form id="porgastos" rendered="#{relatoriosController.gastos}">
+				<div class="box box-primary">
+					<div class="box-header no-border">
+						<!-- //SWICTHES -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<h:outputText value="Filtrar por data: " />
+								<p:inputSwitch id="Vendasdata"
+									value="#{relatoriosController.pordata}">
+									<p:ajax listener="#{relatoriosController.checkdata()}"
+										process="@this" update="relatorio porgastos" />
+								</p:inputSwitch>
+							</div>
+						</div>
+						<!-- //DATAS -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="iniprod_data" value="Inicio"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="iniprod_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datainicio}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="fimprod_data" value="Fim"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="fimprod_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datafim}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+						</div>
+
+
+
+						<!-- // MENU BOTOES  -->
+						<div id="main-buttons">
+							<p:commandButton icon="fa fa-plus" value="Emitir [F2]"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								id="btnSalvar" styleClass="btn-success btnSalvar"
+								actionListener="#{relatoriosController.relatoriogastos()}"
+								update="relatorio" />
+							<p:spacer width="5" />
+
+
+
+							<p:commandButton value="Desfazer [F7]"
+								styleClass="btn-info btnLimpar"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								icon="fa fa-times-circle" update="relatorio" process="@this"
+								actionListener="#{relatoriosController.desfazer()}">
+								<p:resetInput target="relatorio" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+
+				<!-- CONSULTA GASTOS -->
+
+
+				<p:dataTable id="tabelaBuscaGastos" style="height:100%"
+					widgetVar="tabelaBuscaGastos" reflow="true" rows="10"
+					paginator="true" var="a"
+					value="#{relatoriosController.lista_despesas}"
+					emptyMessage="Nenhuma despesa cadastrada"
+					rendered="#{relatoriosController.tabelagastos}">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="10%">
+						<h:outputText value="#{a.id}" />
+					</p:column>
+					<p:column headerText="Data" width="20%" sortBy="a.data">
+						<h:outputText value="#{a.data}" escape="false" />
+					</p:column>
+					<p:column headerText="Descriçao da despesa" width="50%">
+						<h:outputText value="#{a.descricao}" escape="false" />
+					</p:column>
+					<p:column headerText="Valor" width="5%">
+						<h:outputText value="#{a.valor}" />
+					</p:column>
+
+
+				</p:dataTable>
+				<h3>Exportar tabela aqui:</h3>
+				<h:commandLink>
+					<h:graphicImage value="resources/images/excel.png" />
+					<p:dataExporter type="xls" target="tabelaBuscaGastos"
+						fileName="tabelaBuscaGastos" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tabelaBuscaGastos"
+						fileName="tabelaBuscaGastos" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/csv.png" />
+					<p:dataExporter type="csv" target="tabelaBuscaGastos"
+						fileName="tabelaBuscaGastos" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/xml.png" />
+					<p:dataExporter type="xml" target="tabelaBuscaGastos"
+						fileName="tabelaBuscaGastos" />
+				</h:commandLink>
+			</h:form>
+			<!-- POR PRODUTO -->
+			<h:form id="porprodutos" rendered="#{relatoriosController.produtos}">
+
+
+				<div class="box box-primary">
+					<div class="box-header no-border">
+						<!-- //SWICTHES -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-4">
+								<h:outputText value="Mais vendidos:" />
+								<p:inputSwitch id="produtomais"
+									value="#{relatoriosController.maisvendidos}">
+									<p:ajax update="relatorio" />
+								</p:inputSwitch>
+							</div>
+							<div class="ui-g-12 ui-md-3">
+								<h:outputText value="Filtrar por data: "
+									rendered="#{relatoriosController.maisvendidos}" />
+								<p:inputSwitch id="Produtosdata"
+									rendered="#{relatoriosController.maisvendidos}"
+									value="#{relatoriosController.pordata}">
+									<p:ajax listener="#{relatoriosController.checkdata()}"
+										process="@this" update="relatorio" />
+								</p:inputSwitch>
+							</div>
+						</div>
+						<!-- //DATAS -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="iniprod_data" value="Inicio"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="iniprod_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datainicio}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="fimprod_data" value="Fim"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="fimprod_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datafim}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+						</div>
+						<!-- //FILTRO -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-2">
+								<p:outputLabel for="consulta_filtro" value="Filtrar por" />
+								<p:selectOneMenu id="consulta_filtro"
+									value="#{relatoriosController.filtro_consulta}">
+									<f:selectItem itemLabel="Descrição" itemValue="2" />
+									<f:selectItem itemLabel="Codigo" itemValue="1" />
+									<f:selectItem itemLabel="Codigo de barras" itemValue="3" />
+								</p:selectOneMenu>
+							</div>
+							<div class="ui-g-12 ui-md-5">
+								<p:outputLabel for="consulta_filtro" value="" />
+								<div class="ui-inputgroup">
+
+									<p:inputText id="produto" placeholder="Escolha o filtro"
+										value="#{relatoriosController.like_consulta}">
+										<p:ajax event="change" update="relatorio porprodutos"
+											listener="#{relatoriosController.relatorioproduto()}"
+											process="@this" />
+									</p:inputText>
+								</div>
+							</div>
+						</div>
+
+						<!-- // MENU BOTOES -->
+						<div id="main-buttons">
+							<p:commandButton icon="fa fa-plus" value="Emitir [F2]"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								id="btnSalvar" styleClass="btn-success btnSalvar"
+								actionListener="#{relatoriosController.relatorioproduto()}"
+								update="relatorio porprodutos" />
+							<p:spacer width="5" />
+
+
+
+							<p:commandButton value="Desfazer [F7]"
+								styleClass="btn-info btnLimpar"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								icon="fa fa-times-circle" update="relatorio" process="@this"
+								actionListener="#{relatoriosController.desfazer()}">
+								<p:resetInput target="relatorio" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+				<!-- CONSULTA PRODUTO -->
+
+
+				<p:dataTable id="tabelaConsulta3" style="height:100%"
+					widgetVar="tabelaConsulta3" reflow="true" rows="10"
+					paginator="true" var="a"
+					value="#{relatoriosController.lista_produto}"
+					emptyMessage="Nenhum produto cadastrado"
+					rendered="#{relatoriosController.tabelaqtproduto}">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="10%">
+						<h:outputText value="#{a.id}" />
+					</p:column>
+					<p:column headerText="Descrição" width="50%" sortBy="a.descricao">
+						<h:outputText value="#{a.descricao}" escape="false" />
+					</p:column>
+					<p:column headerText="Código de barras" width="40%">
+						<h:outputText value="#{a.cod_barras}" escape="false" />
+					</p:column>
+					<p:column headerText="Preço" width="20%">
+						<h:outputText value="#{a.preco}" escape="false" />
+					</p:column>
+					<p:column headerText="Quantidade em estoque" width="20%">
+						<h:outputText value="#{a.qt_estoque}" escape="false" />
+					</p:column>
+					<p:column headerText="Permite desconto" width="15%">
+						<h:outputText value="#{a.desconto ? 'Sim' : 'Não'}" />
+					</p:column>
+					<p:column headerText="Ativo" width="10%">
+						<h:outputText value="#{a.flg_ativo ? 'Sim' : 'Não'}" />
+					</p:column>
+
+
+
+
+				</p:dataTable>
+
+				<p:dataTable id="tabelaBuscaProdVend" style="height:100%"
+					widgetVar="tabelaBuscaProdVend" reflow="true" rows="10"
+					paginator="true" var="a"
+					value="#{relatoriosController.lista_vendprod}"
+					emptyMessage="Nenhum produto cadastrado"
+					rendered="#{relatoriosController.tabelaprodvend}">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="10%">
+						<h:outputText value="#{a.codigo_produto}" />
+					</p:column>
+					<p:column headerText="Data" width="50%"
+						sortBy="#{a.codigo_venda.dt_emissao}">
+						<h:outputText value="#{a.codigo_venda.dt_emissao}" escape="false" />
+					</p:column>
+					<p:column headerText="Descrição" width="50%">
+						<h:outputText value="#{a.codigo_produto.descricao}" escape="false" />
+					</p:column>
+					<p:column headerText="Quantidade Vendida" width="40%"
+						sortBy="#{a.quantidade}">
+						<h:outputText value="#{a.quantidade}" escape="false" />
+					</p:column>
+					<p:column headerText="Preço" width="20%">
+						<h:outputText value="#{a.codigo_produto.preco}" escape="false" />
+					</p:column>
+					<p:column headerText="Quantidade em estoque" width="20%">
+						<h:outputText value="#{a.codigo_produto.qt_estoque}"
+							escape="false" />
+					</p:column>
+
+					<p:column headerText="Ativo" width="10%">
+						<h:outputText value="#{a.flg_ativo ? 'Sim' : 'Não'}" />
+					</p:column>
+
+
+
+
+				</p:dataTable>
+				<h3>Exportar tabela aqui:</h3>
+				<h:commandLink>
+					<h:graphicImage value="resources/images/excel.png" />
+					<p:dataExporter type="xls" target="tabelaBuscaProdVend"
+						fileName="tabelaBuscaProdVend" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tabelaBuscaProdVend"
+						fileName="tabelaBuscaProdVend" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/csv.png" />
+					<p:dataExporter type="csv" target="tabelaBuscaProdVend"
+						fileName="tabelaBuscaProdVend" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/xml.png" />
+					<p:dataExporter type="xml" target="tabelaBuscaProdVend"
+						fileName="tabelaBuscaProdVend" />
+				</h:commandLink>
+
+
+			</h:form>
+			<!-- POR VENDAS -->
+			<h:form id="porvendas" rendered="#{relatoriosController.vendas}">
+
+				<div class="box box-primary">
+					<div class="box-header no-border">
+						<!-- //SWICTHES -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<h:outputText value="Filtrar por data: " />
+								<p:inputSwitch id="Vendasdata"
+									value="#{relatoriosController.pordata}">
+									<p:ajax listener="#{relatoriosController.checkdata()}"
+										process="@this" update="relatorio porvendas" />
+								</p:inputSwitch>
+							</div>
+						</div>
+						<!-- //DATAS -->
+						<div class="ui-g ui-fluid">
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="iniprod_data" value="Inicio"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="iniprod_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datainicio}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+							<div class="ui-g-12 ui-md-3">
+								<p:outputLabel for="fimprod_data" value="Fim"
+									rendered="#{relatoriosController.filtrodata}" />
+								<p:calendar id="fimprod_data" showOn="button"
+									pattern="dd/MM/yyyy" mask="true"
+									value="#{relatoriosController.datafim}"
+									rendered="#{relatoriosController.filtrodata}" />
+							</div>
+						</div>
+						<!-- // MENU BOTOES -->
+						<div id="main-buttons">
+							<p:commandButton icon="fa fa-plus" value="Emitir [F2]"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								id="btnSalvar" styleClass="btn-success btnSalvar"
+								actionListener="#{relatoriosController.relatoriovendas()}"
+								update="relatorio porvendas" />
+							<p:spacer width="5" />
+
+
+
+							<p:commandButton value="Desfazer [F7]"
+								styleClass="btn-info btnLimpar"
+								oncomplete="$('html, body').animate({scrollTop:0}, 'slow');"
+								icon="fa fa-times-circle" update="relatorio porvendas"
+								process="@this"
+								actionListener="#{relatoriosController.desfazer()}">
+								<p:resetInput target="relatorio" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+
+				<!-- CONSULTA VENDAS -->
+
+
+				<p:dataTable id="tabelaBuscaVenda" style="height:100%"
+					widgetVar="tabelaBuscaVenda" reflow="true" rows="10"
+					paginator="true" var="a"
+					value="#{relatoriosController.lista_venda}"
+					emptyMessage="Nenhuma venda cadastrado"
+					rendered="#{relatoriosController.tabelavendas}">
+
+					<!-- COLUNAS -->
+					<p:column headerText="Cod." width="10%">
+						<h:outputText value="#{a.codigo_venda}" />
+					</p:column>
+					<p:column headerText="Data" width="20%"
+						sortBy="a.codigo_venda.dt_emissao">
+						<h:outputText value="#{a.codigo_venda.dt_emissao}" escape="false" />
+					</p:column>
+					<p:column headerText="Descriçao do Produto" width="50%">
+						<h:outputText value="#{a.codigo_produto.descricao}" escape="false" />
+					</p:column>
+					<p:column headerText="QT" width="5%">
+						<h:outputText value="#{a.quantidade}" />
+					</p:column>
+					<p:column headerText="Preço" width="10%">
+						<h:outputText value="#{a.codigo_venda.valor}" escape="false" />
+					</p:column>
+					<p:column headerText="Nome do Cliente" width="20%">
+						<h:outputText value="#{a.codigo_venda.codigo_cliente.nome}"
+							escape="false" />
+					</p:column>
+					<p:column headerText="Condição de Pagamento" width="10%">
+						<h:outputText value="#{a.codigo_venda.condicaoPag}" />
+					</p:column>
+
+				</p:dataTable>
+
+				<h5>Exportar tabela aqui:</h5>
+				<h:commandLink>
+					<h:graphicImage value="resources/images/excel.png" />
+					<p:dataExporter type="xls" target="tabelaBuscaVenda"
+						fileName="tabelaBuscaVenda" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tabelaBuscaVenda"
+						fileName="tabelaBuscaVenda" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/csv.png" />
+					<p:dataExporter type="csv" target="tabelaBuscaVenda"
+						fileName="tabelaBuscaVenda" />
+				</h:commandLink>
+
+				<h:commandLink>
+					<h:graphicImage value="resources/images/xml.png" />
+					<p:dataExporter type="xml" target="tabelaBuscaVenda"
+						fileName="tabelaBuscaVenda" />
+				</h:commandLink>
+			</h:form>
+
+		</h:form>
+
+
+
+
+
+
+
+
+
+		<!-- CONSULTA DE CLIENTES -->
+		<p:dialog header="Consultar clientes" id="consulta"
+			styleClass="consulta" widgetVar="consulta" modal="true" height="70%"
+			width="70%" appendTo="@(body)" resizable="false" draggable="false"
+			responsive="true">
+			<h:form>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_filtro" value="Filtrar por" />
+						<p:selectOneMenu id="consulta_filtro"
+							value="#{clientesController.filtro_consulta}">
+							<f:selectItem itemLabel="Nome" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="CPF" itemValue="3" />
+							<f:selectItem itemLabel="Cidade" itemValue="4" />
+							<f:selectItem itemLabel="UF" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ativo" value="Status" />
+						<p:selectOneMenu id="consulta_ativo"
+							value="#{clientesController.ativo_consulta}">
+							<f:selectItem itemLabel="Ativo" itemValue="1" />
+							<f:selectItem itemLabel="Inativo" itemValue="2" />
+							<f:selectItem itemLabel="Todos" itemValue="3" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-6" />
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ordem" value="Ordenar por" />
+						<p:selectOneMenu id="consulta_ordem"
+							value="#{clientesController.ordem_consulta}">
+							<f:selectItem itemLabel="Nome" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="CPF" itemValue="3" />
+							<f:selectItem itemLabel="Cidade" itemValue="4" />
+							<f:selectItem itemLabel="UF" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-10">
+						<p:outputLabel for="consulta_like" value="Filtro" />
+						<p:inputText id="consulta_like"
+							value="#{clientesController.like_consulta}" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="btnFiltro" value="" />
+						<p:commandButton icon="fa fa-search" id="btnFiltro" value="Buscar"
+							styleClass="btn-teal" update="tabelaConsulta"
+							action="#{clientesController.filtraClientes()}" process="@form" />
+					</div>
+				</div>
+			</h:form>
+
+
+
+			<p:dataTable id="tabelaConsulta" style="height:100%"
+				styleClass="tableConsulta" widgetVar="tabela" reflow="true" rows="5"
+				paginator="true" var="c" value="#{clientesController.lista_cliente}"
+				emptyMessage="Nenhuma cliente cadastrado">
+
+				<!-- COLUNAS -->
+				<p:column headerText="Cod." width="5%" styleClass="centralizado">
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{c.nome}" escape="false" />
+				</p:column>
+				<p:column headerText="CPF" width="12%" styleClass="centralizado">
+					<h:outputText converter="cpfConverter" value="#{c.cpf}" />
+				</p:column>
+				<p:column headerText="Cidade" width="12%" styleClass="centralizado">
+					<h:outputText value="#{c.cidade.nome}" />
+				</p:column>
+				<p:column headerText="UF" width="4%" styleClass="centralizado">
+					<h:outputText value="#{c.uf.uf}" />
+				</p:column>
+				<p:column headerText="Ativo" width="5%" styleClass="centralizado">
+					<h:outputText value="#{c.flg_ativo ? 'Sim' : 'Não'}" />
+				</p:column>
+
+
+				<!-- COLUNA FUNÇÕES -->
+				<p:column width="5%" styleClass="centralizado">
+					<p:commandButton id="btnEditar" icon="ui-icon-pencil"
+						actionListener="#{clientesController.seleciona}"
+						oncomplete="PF('consulta').hide()" process="@this">
+						<f:attribute name="cli_edita" value="#{c}" />
+					</p:commandButton>
+					<p:tooltip id="toolTipEditar" for="btnEditar"
+						value="Editar cliente" position="top" />
+				</p:column>
+			</p:dataTable>
+
+
+		</p:dialog>
+
+		<!-- CONSULTA FUNCIONARIO -->
+
+		<p:dialog header="Consultar funcionários" id="consulta2"
+			widgetVar="consulta2" modal="true" height="70%" width="70%"
+			appendTo="@(body)" resizable="false" draggable="false"
+			responsive="true">
+
+			<h:form>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_filtro" value="Filtrar por" />
+						<p:selectOneMenu id="consulta_filtro"
+							value="#{funcionariosController.filtro_consulta}">
+							<f:selectItem itemLabel="Nome" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="CPF" itemValue="3" />
+							<f:selectItem itemLabel="Cidade" itemValue="4" />
+							<f:selectItem itemLabel="UF" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ativo" value="Status" />
+						<p:selectOneMenu id="consulta_ativo"
+							value="#{funcionariosController.ativo_consulta}">
+							<f:selectItem itemLabel="Ativo" itemValue="1" />
+							<f:selectItem itemLabel="Inativo" itemValue="2" />
+							<f:selectItem itemLabel="Todos" itemValue="3" />
+						</p:selectOneMenu>
+					</div>
+
+					<div class="ui-g-12 ui-md-6" />
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="consulta_ordem" value="Ordenar por" />
+						<p:selectOneMenu id="consulta_ordem"
+							value="#{funcionariosController.ordem_consulta}">
+							<f:selectItem itemLabel="Nome" itemValue="2" />
+							<f:selectItem itemLabel="Codigo" itemValue="1" />
+							<f:selectItem itemLabel="CPF" itemValue="3" />
+							<f:selectItem itemLabel="Cidade" itemValue="4" />
+							<f:selectItem itemLabel="UF" itemValue="5" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-10">
+						<p:outputLabel for="consulta_like" value="Filtro" />
+						<p:inputText id="consulta_like"
+							value="#{funcionariosController.like_consulta}" />
+					</div>
+
+					<div class="ui-g-12 ui-md-2">
+						<p:outputLabel for="btnFiltro" value="" />
+						<p:commandButton icon="fa fa-search" id="btnFiltro" value="Buscar"
+							styleClass="btn-teal" update="consulta2"
+							action="#{funcionariosController.filtraFuncionarios}"
+							process="@form" />
+					</div>
+				</div>
+			</h:form>
+
+			<p:dataTable id="tabelaConsulta2" style="height:100%"
+				styleClass="tableConsulta2" widgetVar="tabela" reflow="true"
+				rows="5" paginator="true" var="f"
+				value="#{funcionariosController.lista_funcionario}"
+				emptyMessage="Nenhum funcionario cadastrado">
+
+				<!-- COLUNAS -->
+				<p:column headerText="Cod." width="5%" styleClass="centralizado">
+					<h:outputText value="#{f.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{f.nome}" escape="false" />
+				</p:column>
+				<p:column headerText="CPF" width="15%" styleClass="centralizado">
+					<h:outputText converter="cpfConverter" value="#{f.cpf}" />
+				</p:column>
+				<p:column headerText="Cidade" width="12%" styleClass="centralizado">
+					<h:outputText value="#{f.cidade.nome}" />
+				</p:column>
+				<p:column headerText="UF" width="4%" styleClass="centralizado">
+					<h:outputText value="#{f.uf.uf}" />
+				</p:column>
+				<p:column headerText="Ativo" width="5%" styleClass="centralizado">
+					<h:outputText value="#{f.flg_ativo ? 'Sim' : 'Não'}" />
+				</p:column>
+
+
+				<!-- COLUNA FUNÇÕES -->
+				<p:column width="5%" styleClass="centralizado">
+					<p:commandButton id="btnEditar" icon="ui-icon-pencil"
+						actionListener="#{funcionariosController.seleciona}"
+						oncomplete="PF('consulta2').hide()" update="funcionario"
+						process="@this">
+						<f:attribute name="func_edita" value="#{f}" />
+					</p:commandButton>
+					<p:tooltip id="toolTipEditar" for="btnEditar"
+						value="Editar funcionario" position="top" />
+				</p:column>
+			</p:dataTable>
+		</p:dialog>
+
+
+
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>

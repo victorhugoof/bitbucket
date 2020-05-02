@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<style type="text/css">
+#layout-menu_menu {
+	z-index: 9997 !important;
+}
+
+#layout-menu_menu span.ui-menuitem-text {
+	margin-left: 2px;
+}
+</style>
+	<ul class="nav navbar-nav">
+		<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <pe:gravatar id="userImage" value="vhmf171@hotmail.com" /> <span class="hidden-xs"><h:outputLabel value="#{logonMB.currentUser.func_logado.nome}" /></span>
+		</a>
+			<ul class="dropdown-menu">
+				<li class="user-header">
+					<div class="hidden-xs">
+						<pe:gravatar style="border-radius: 50%" value="vhmf171@hotmail.com" />
+					</div>
+					<p>
+						<h:outputLabel value="#{logonMB.currentUser.func_logado.nome}" />
+						<small><h:outputLabel value="#{logonMB.currentUser.func_logado.descricao.descricao}" /></small>
+						<h:form style="text-align: right">
+							<p:remoteCommand name="desloga" actionListener="#{logonMB.desloga}" />
+							<p:commandLink action="#{sairMB.doLogout}" title="Sair" oncomplete="desloga()">
+								<small><h:outputLabel style="color: rgba(255, 255, 255, 0.8); font-weight: bold; font-size: 13px" value="Sair" /></small>
+							</p:commandLink>
+
+						</h:form>
+					</p>
+				</li>
+			</ul></li>
+
+
+	</ul>
+
+</ui:composition>

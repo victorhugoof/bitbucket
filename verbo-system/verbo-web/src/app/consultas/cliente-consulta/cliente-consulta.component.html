@@ -1,0 +1,69 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-12">
+    <div class="ui-g-12 ui-md-12">
+
+      <div class="row">
+        <div class="ui-g-12 ui-md-2">
+          <div class="form-group">
+            <label>Filtrar por</label>
+            <p-dropdown [options]="filtros" [(ngModel)]="selectFiltro" optionLabel="label"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <div class="form-group">
+            <label>Status</label>
+            <p-dropdown [options]="situacoes" [(ngModel)]="selectSituacao" optionLabel="label"></p-dropdown>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <div class="form-group">
+            <label>Ordernar por</label>
+            <p-dropdown [options]="filtros" [(ngModel)]="selectOrdem" optionLabel="label"></p-dropdown>
+          </div>
+        </div>
+      </div>
+
+      <form autocomplete="off" (ngSubmit)="onSubmit()" [formGroup]="formConsulta">
+        <div class="row">
+          <div class="ui-g-12 ui-md-12">
+            <div class="form-group">
+              <label for="nom_filtro">Buscar</label>
+              <div class="ui-inputgroup">
+                <input formControlName="nomeFiltro" type="text" pInputText id="nom_filtro">
+                <button [disabled]="!formConsulta.valid" pButton type="submit" label="Filtrar" class="ui-button-info"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <div class="ui-g-12 ui-md-12">
+          <p-table [columns]="cols" [value]="lista" [paginator]="true" [rows]="5">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns" width="{{col.width}}">
+                  {{col.header}}
+                </th>
+                <th width="5%">#</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+                <td>
+                  <button type="button" pButton (click)="seleciona(rowData)" icon="fa fa-plus"></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

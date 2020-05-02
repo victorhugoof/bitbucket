@@ -1,0 +1,3 @@
+INSERT INTO formapagamento (codigo, descricao) SELECT * FROM (SELECT 1, 'Dinheiro') AS tmp WHERE NOT EXISTS (SELECT descricao FROM formapagamento WHERE descricao = 'Dinheiro') LIMIT 1;
+INSERT INTO formapagamento (codigo, descricao) SELECT * FROM (SELECT 2, 'Cartao') AS tmp WHERE NOT EXISTS (SELECT descricao FROM formapagamento WHERE descricao = 'Cartao') LIMIT 1;
+INSERT INTO formapagamento (codigo, descricao) SELECT * FROM (SELECT 3, 'Crediário') AS tmp WHERE NOT EXISTS (SELECT descricao FROM formapagamento WHERE descricao = 'Crediário') LIMIT 1;

@@ -1,0 +1,2 @@
+INSERT INTO grupoacesso (codigo, descricao) SELECT * FROM (SELECT 1, 'Funcionario') AS tmp WHERE NOT EXISTS (SELECT descricao FROM grupoacesso WHERE descricao = 'Funcionario') LIMIT 1;
+INSERT INTO grupoacesso (codigo, descricao) SELECT * FROM (SELECT 2, 'Gerente') AS tmp WHERE NOT EXISTS (SELECT descricao FROM grupoacesso WHERE descricao = 'Gerente') LIMIT 1;

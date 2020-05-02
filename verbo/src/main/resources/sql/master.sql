@@ -1,0 +1,1 @@
+INSERT INTO funcionarios (id, nome, senha, grupoacesso, flg_ativo) SELECT * FROM (SELECT 3, 'MASTER', 'verbo', 2, 1) AS tmp WHERE NOT EXISTS (SELECT id FROM funcionarios WHERE id = 3) LIMIT 1;
