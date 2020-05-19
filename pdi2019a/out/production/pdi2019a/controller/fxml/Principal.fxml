@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pickOnBounds="false" prefHeight="799.0" prefWidth="1026.0" rotateGraphic="true" snapToPixel="false" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
+	<tabs>
+		<Tab text="Segunda Chamada">
+			<content>
+				<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemSegundaChamada" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroSegundaChamada" text="Remover filtro">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemSegundaChamada" text="Salvar Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+							</children>
+						</HBox>
+						<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="767.0" prefWidth="767.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="243.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<GridPane GridPane.columnIndex="1">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<HBox prefHeight="100.0" prefWidth="200.0">
+											<children>
+												<Button mnemonicParsing="false" onAction="#questao1SegundaChamada" text="Questão 1">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button mnemonicParsing="false" onAction="#questao2SegundaChamada" text="Questão 2">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button mnemonicParsing="false" onAction="#questao3SegundaChamada" text="Questão 3">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+										<Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Distancia questão 1" textAlignment="CENTER" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+										</Label>
+
+										<Slider fx:id="sliderSegundaChamadaQuestao1" accessibleText="Questão 1" blockIncrement="5.0" majorTickUnit="5.0" max="255.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cor questão 1" textAlignment="CENTER" GridPane.rowIndex="3">
+											<padding>
+												<Insets left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+										</Label>
+										<ColorPicker fx:id="colorPickerSegundaChamadaQuestao1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="4">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</ColorPicker>
+									</children>
+								</GridPane>
+								<GridPane>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageViewSegundaChamada" onMousePressed="#pressedImagemSegundaChamada" onMouseReleased="#releasedImagemSegundaChamada" fitHeight="705.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageViewSegundaChamada2" fitHeight="705.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+									</children>
+								</GridPane>
+
+							</children>
+						</GridPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+					</padding>
+				</GridPane>
+			</content>
+		</Tab>
+		<Tab text="Artigo">
+			<content>
+				<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemArtigo" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroArtigo" text="Remover filtro">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemArtigo" text="Salvar Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+							</children>
+						</HBox>
+						<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="767.0" prefWidth="767.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="243.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<GridPane GridPane.columnIndex="1">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<HBox prefHeight="100.0" prefWidth="200.0">
+											<children>
+												<Button mnemonicParsing="false" onAction="#executarArtigo" text="Executar">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+									</children>
+								</GridPane>
+								<GridPane>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageViewArtigo" fitHeight="705.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageViewArtigo2" fitHeight="705.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+									</children>
+								</GridPane>
+
+							</children>
+						</GridPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+					</padding>
+				</GridPane>
+			</content>
+		</Tab>
+		<Tab text="OpenCV">
+			<content>
+				<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemOpenCv" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroOpenCv" text="Remover filtro">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemOpenCv" text="Salvar Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+							</children>
+						</HBox>
+						<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="767.0" prefWidth="767.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="243.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<GridPane GridPane.columnIndex="1">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="43.0" minHeight="43.0" prefHeight="43.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<HBox prefHeight="100.0" prefWidth="200.0">
+											<children>
+												<Button mnemonicParsing="false" onAction="#aplicaFiltroDilatacaoOpenCv" text="Dilatação">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button mnemonicParsing="false" onAction="#aplicaFiltroErosaoOpenCv" text="Erosão">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button mnemonicParsing="false" onAction="#aplicaFiltroBordaCannyOpenCv" text="Borda Canny">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button mnemonicParsing="false" onAction="#aplicaFiltroBordaSobelOpenCv" text="Borda Sobel">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button mnemonicParsing="false" onAction="#aplicaFiltroBordaLaplacianOpenCv" text="Borda Laplacian">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+										<Label fx:id="lblSizeDilatacao" text="Size dilatação: 1" GridPane.rowIndex="8">
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Label>
+										<Slider fx:id="sliderDilatacaoOpenCv" blockIncrement="1.0" showTickLabels="true" showTickMarks="true" value="1.0" GridPane.rowIndex="9">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label fx:id="lblSizeErosao" text="Size erosão: 1" GridPane.rowIndex="10">
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+										</Label>
+										<Slider fx:id="sliderErosaoOpenCv" blockIncrement="1.0" showTickLabels="true" showTickMarks="true" value="1.0" GridPane.rowIndex="11">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label fx:id="lblSizeBordaCannyBlur" text="Size Blur: 3" GridPane.rowIndex="12">
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+										</Label>
+										<Slider fx:id="sliderBordaBlurOpenCv" blockIncrement="1.0" min="1.0" showTickLabels="true" showTickMarks="true" value="3.0" GridPane.rowIndex="13">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label fx:id="lblSizeBordaCanny" text="Size Canny: 1" GridPane.rowIndex="14">
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+										</Label>
+										<Slider fx:id="sliderBordaOpenCv" blockIncrement="1.0" max="500.0" showTickLabels="true" showTickMarks="true" value="1.0" GridPane.rowIndex="15">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label fx:id="lblSizeBordaSobel" text="Size Sobel: 1" GridPane.rowIndex="16">
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+										</Label>
+										<Slider fx:id="sliderBordaSobelOpenCv" blockIncrement="1.0" max="500.0" showTickLabels="true" showTickMarks="true" value="1.0" GridPane.rowIndex="17">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label fx:id="lblSizeBordaLaplacian" text="Size Laplacian: 1" GridPane.rowIndex="18">
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+										</Label>
+										<Slider fx:id="sliderBordaLaplacianOpenCv" blockIncrement="1.0" max="500.0" showTickLabels="true" showTickMarks="true" value="1.0" GridPane.rowIndex="19">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+                              <CheckBox fx:id="checkUsaBlurCanny" mnemonicParsing="false" onAction="#aplicaFiltroBordaCannyOpenCv" selected="true" text="Usar blur no efeito Canny" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox fx:id="checkUsaBlurSobel" mnemonicParsing="false" onAction="#aplicaFiltroBordaSobelOpenCv" selected="true" text="Usar blur no efeito Sobel" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox fx:id="checkUsaGraySobel" mnemonicParsing="false" onAction="#aplicaFiltroBordaSobelOpenCv" selected="true" text="Usar escala de cinza no efeito Sobel" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox fx:id="checkUsaBlurLaplacian" mnemonicParsing="false" onAction="#aplicaFiltroBordaLaplacianOpenCv" selected="true" text="Usar blur no efeito Laplacian" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox fx:id="checkUsaGrayLaplacian" mnemonicParsing="false" onAction="#aplicaFiltroBordaLaplacianOpenCv" selected="true" text="Usar escala de cinza no efeito Laplacian" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </CheckBox>
+									</children>
+								</GridPane>
+								<GridPane>
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageViewOpenCV" fitHeight="705.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+
+										<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+											<content>
+												<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+													<children>
+														<ImageView fx:id="imageViewOpenCV2" fitHeight="705.0" fitWidth="398.0" pickOnBounds="true" preserveRatio="true" />
+													</children>
+												</AnchorPane>
+											</content>
+										</ScrollPane>
+									</children>
+								</GridPane>
+
+							</children>
+						</GridPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+					</padding>
+				</GridPane>
+			</content>
+		</Tab>
+		<Tab text="Principal">
+			<content>
+				<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagem1" text="Abrir Imagem 1">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#abreImagem2" text="Abrir Imagem 2">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvar" text="Salvar Resultado">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+							</children>
+						</HBox>
+						<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="900.0" GridPane.rowIndex="1">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+											<children>
+												<ImageView fx:id="imageView" fitHeight="190.0" fitWidth="227.0" onMouseMoved="#rasterIMG" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+											<children>
+												<ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" onMouseMoved="#rasterIMG" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+								<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3">
+									<children>
+										<HBox>
+											<children>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#histograma" text="Histogramas">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+										<HBox>
+											<children>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#equalizar" text="Equalizar">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#subtracao" text="Subtração">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#escalaDeCinzaMedia" text="Cinza">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#negativo" text="Negativo">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+										<HBox>
+											<children>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#segmentacao" text="Segmentação">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pintaVerm" text="Pinta vermelho">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+										<HBox>
+											<children>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reduzirRuidoX" text="X">
+													<HBox.margin>
+														<Insets bottom="8.0" left="8.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reduzirRuidoCruz" text="Cruz">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+												<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#reduzirRuido3x3" text="3x3">
+													<HBox.margin>
+														<Insets bottom="8.0" left="3.0" right="3.0" top="8.0" />
+													</HBox.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Button>
+											</children>
+										</HBox>
+										<GridPane>
+											<columnConstraints>
+												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+											</columnConstraints>
+											<rowConstraints>
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+												<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+											</rowConstraints>
+											<children>
+												<RadioButton fx:id="eqNormal" mnemonicParsing="false" selected="true" text="Equalização Normal">
+													<GridPane.margin>
+														<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+													</GridPane.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+													<toggleGroup>
+														<ToggleGroup fx:id="equalizacao" />
+													</toggleGroup>
+												</RadioButton>
+												<RadioButton fx:id="eqValid" mnemonicParsing="false" text="Equalização Pontos Válidos" toggleGroup="$equalizacao" GridPane.rowIndex="1">
+													<GridPane.margin>
+														<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+													</GridPane.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</RadioButton>
+												<RadioButton fx:id="eqCentralizada" mnemonicParsing="false" text="Equalização Centralizada" toggleGroup="$equalizacao" GridPane.rowIndex="2">
+													<GridPane.margin>
+														<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+													</GridPane.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</RadioButton>
+											</children>
+										</GridPane>
+										<GridPane>
+											<columnConstraints>
+												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+											</columnConstraints>
+											<rowConstraints>
+												<RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+												<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+											</rowConstraints>
+											<children>
+												<Label prefHeight="9.0" prefWidth="76.0" text="Limiarização">
+													<GridPane.margin>
+														<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+													</GridPane.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Label>
+
+												<Slider fx:id="slider" accessibleText="Limiarização" majorTickUnit="50.0" max="255.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.rowIndex="1">
+													<GridPane.margin>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</GridPane.margin>
+												</Slider>
+											</children>
+										</GridPane>
+										<GridPane>
+											<columnConstraints>
+												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+											</columnConstraints>
+											<rowConstraints>
+												<RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+												<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+											</rowConstraints>
+											<children>
+												<Label prefHeight="27.0" prefWidth="198.0" text="Limiar de segmentação">
+													<GridPane.margin>
+														<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+													</GridPane.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Label>
+												<Slider fx:id="slider2" accessibleText="Segmentação" majorTickUnit="50.0" max="255.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="100.0" GridPane.rowIndex="1">
+													<GridPane.margin>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</GridPane.margin>
+												</Slider>
+											</children>
+										</GridPane>
+										<GridPane>
+											<columnConstraints>
+												<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+											</columnConstraints>
+											<rowConstraints>
+												<RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+												<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+											</rowConstraints>
+											<children>
+												<Label prefHeight="9.0" prefWidth="76.0" text="Adição">
+													<GridPane.margin>
+														<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+													</GridPane.margin>
+													<padding>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</padding>
+												</Label>
+												<Slider fx:id="slider1" accessibleText="Adição" blockIncrement="1.0" majorTickUnit="10.0" max="100.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" GridPane.rowIndex="1">
+													<GridPane.margin>
+														<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+													</GridPane.margin>
+												</Slider>
+											</children>
+										</GridPane>
+
+
+										<Pane fx:id="pnlCor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="76.0" minWidth="254.0">
+											<VBox.margin>
+												<Insets />
+											</VBox.margin>
+										</Pane>
+										<Label fx:id="lblR" textFill="RED">
+											<VBox.margin>
+												<Insets left="15.0" />
+											</VBox.margin>
+										</Label>
+										<Label fx:id="lblG" textFill="GREEN">
+											<VBox.margin>
+												<Insets left="15.0" />
+											</VBox.margin>
+										</Label>
+										<Label fx:id="lblB" textFill="BLUE">
+											<VBox.margin>
+												<Insets left="15.0" />
+											</VBox.margin>
+										</Label>
+									</children>
+								</VBox>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+											<children>
+												<ImageView fx:id="imageView3" fitHeight="150.0" fitWidth="200.0" onMouseMoved="#rasterIMG" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+							</children>
+						</GridPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+					</padding>
+				</GridPane>
+			</content>
+		</Tab>
+		<Tab text="Desafio 1">
+			<content>
+				<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<top>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="200.0" BorderPane.alignment="CENTER">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemDesafio1" prefHeight="38.0" prefWidth="138.0" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets bottom="30.0" left="30.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarFiltroDesafio1" prefHeight="38.0" prefWidth="138.0" text="Aplicar filtro">
+									<HBox.margin>
+										<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroDesafio1" prefHeight="38.0" prefWidth="138.0" text="Remover filtro">
+									<HBox.margin>
+										<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemDesafio1" prefHeight="38.0" prefWidth="138.0" text="Salvar">
+									<HBox.margin>
+										<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+							</children>
+						</HBox>
+					</top>
+					<center>
+						<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<content>
+								<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+									<children>
+										<ImageView fx:id="imageViewDesafio1" fitHeight="639.0" fitWidth="898.0" pickOnBounds="true" preserveRatio="true" />
+									</children>
+								</AnchorPane>
+							</content>
+						</ScrollPane>
+					</center>
+				</BorderPane>
+			</content>
+		</Tab>
+		<Tab text="Desafio 2">
+			<content>
+				<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<top>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="200.0" BorderPane.alignment="CENTER">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemDesafio2" prefHeight="38.0" prefWidth="138.0" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets bottom="30.0" left="30.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarFiltroDesafio2" prefHeight="38.0" prefWidth="138.0" text="Aplicar filtro">
+									<HBox.margin>
+										<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroDesafio2" prefHeight="38.0" prefWidth="138.0" text="Remover filtro">
+									<HBox.margin>
+										<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemDesafio2" prefHeight="38.0" prefWidth="138.0" text="Salvar">
+									<HBox.margin>
+										<Insets bottom="30.0" left="10.0" right="10.0" top="30.0" />
+									</HBox.margin>
+								</Button>
+							</children>
+						</HBox>
+					</top>
+					<center>
+						<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<content>
+								<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+									<children>
+										<ImageView fx:id="imageViewDesafio2" fitHeight="639.0" fitWidth="898.0" onMousePressed="#pressedImagemDesafio2" onMouseReleased="#releasedImagemDesafio2" pickOnBounds="true" preserveRatio="true" />
+									</children>
+								</AnchorPane>
+							</content>
+						</ScrollPane>
+					</center>
+				</BorderPane>
+			</content>
+		</Tab>
+		<Tab text="Prova Teste 1">
+			<content>
+				<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemProvaTeste1" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarQuestao1ProvaTeste1" text="Aplicar questão 1">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarQuestao2ProvaTeste1" text="Aplicar questão 2">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarQuestao3ProvaTeste1" text="Aplicar questão 3">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarSegmentacaoProvaTeste1" text="Aplicar segmentação">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroProvaTeste1" text="Remover filtro">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemProvaTeste1" text="Salvar">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+							</children>
+						</HBox>
+						<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="811.0" prefWidth="811.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="199.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+											<children>
+												<ImageView fx:id="imageViewProvaTeste1" fitHeight="639.0" fitWidth="805.0" onMousePressed="#pressedImagemProvaTeste1" onMouseReleased="#releasedImagemProvaTeste1" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+								<GridPane GridPane.columnIndex="1">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Distancia questão 1" textAlignment="CENTER">
+											<GridPane.margin>
+												<Insets left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+										</Label>
+
+										<Slider fx:id="sliderProvaTeste1Questao1" accessibleText="Questão 1" blockIncrement="5.0" majorTickUnit="5.0" max="255.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</Slider>
+										<Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Cor questão 1" textAlignment="CENTER" GridPane.rowIndex="2">
+											<padding>
+												<Insets left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<GridPane.margin>
+												<Insets left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+										</Label>
+										<ColorPicker fx:id="colorPickerProvaTeste1Questao1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</padding>
+										</ColorPicker>
+									</children>
+								</GridPane>
+
+							</children>
+						</GridPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+					</padding>
+				</GridPane>
+			</content>
+		</Tab>
+		<Tab text="Prova 1">
+			<content>
+				<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+						<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+							<children>
+								<Button mnemonicParsing="false" onAction="#abreImagemProva1" text="Abrir Imagem">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarQuestao1Prova1" text="Aplicar questão 1">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarQuestao2Prova1" text="Aplicar questão 2">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarQuestao3Prova1" text="Aplicar questão 3">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#aplicarSegmentacaoProva1" text="Aplicar segmentação">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#removerFiltroProva1" text="Remover filtro">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+								<Button mnemonicParsing="false" onAction="#salvarImagemProva1" text="Salvar">
+									<HBox.margin>
+										<Insets left="15.0" />
+									</HBox.margin>
+									<padding>
+										<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+									</padding>
+								</Button>
+							</children>
+						</HBox>
+						<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="811.0" prefWidth="811.0" />
+								<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="199.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+									<content>
+										<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+											<children>
+												<ImageView fx:id="imageViewProva1" fitHeight="639.0" fitWidth="805.0" onMousePressed="#pressedImagemProva1" onMouseReleased="#releasedImagemProva1" pickOnBounds="true" preserveRatio="true" />
+											</children>
+										</AnchorPane>
+									</content>
+								</ScrollPane>
+								<GridPane GridPane.columnIndex="1">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Quantidade colunas Questão 1" textAlignment="CENTER">
+											<GridPane.margin>
+												<Insets left="5.0" right="5.0" top="5.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets left="8.0" right="8.0" top="8.0" />
+											</padding>
+											<font>
+												<Font name="System Bold" size="12.0" />
+											</font>
+										</Label>
+										<TextField fx:id="inputTextProva1" onAction="#aplicarQuestao1Prova1" promptText="Inteiro (enter para aplicar ou pressione o botão)" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+											</GridPane.margin>
+											<padding>
+												<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+											</padding>
+										</TextField>
+									</children>
+								</GridPane>
+
+							</children>
+						</GridPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+					</padding>
+				</GridPane>
+			</content>
+		</Tab>
+	</tabs>
+</TabPane>
