@@ -42,7 +42,7 @@
 										<p:row><p:outputLabel for="cad_tipo" value="Tipo" /></p:row>
 										<p:row>
 											<p:selectOneMenu disabled="#{controller.atividade.status}" style="width:100%" id="cad_tipo" required="true" requiredMessage="É necessária selecionar um tipo" value="#{controller.atividade.tipo}" converter="tipoConverter">
-												<f:selectItems value="#{controller.lista_tipos}" />
+												<f:selectItems value="#{controller.listaTipos}" />
 											</p:selectOneMenu>
 										</p:row>
 									</p:panelGrid>
@@ -92,7 +92,7 @@
 							
 						
 						
-							<p:dataTable id="tabelaConsulta" widgetVar="tabela" reflow="true" rows="6" paginator="true" var="at" value="#{controller.lista_atv}" emptyMessage="Nenhuma atividade cadastrada">
+							<p:dataTable id="tabelaConsulta" widgetVar="tabela" reflow="true" rows="6" paginator="true" var="at" value="#{controller.listaAtv}" emptyMessage="Nenhuma atividade cadastrada">
 								<f:facet name="header">
 									<p:outputPanel><h2>Atividade adicionadas</h2></p:outputPanel>
 									<p:outputPanel>
